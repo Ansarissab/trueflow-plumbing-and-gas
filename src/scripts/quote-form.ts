@@ -88,6 +88,7 @@ function wireForm(form: HTMLFormElement): void {
   const failNote = form.querySelector<HTMLElement>('[data-form-fail]');
   const fileInput = form.querySelector<HTMLInputElement>('input[type="file"][name="photos"]');
   const photoErrorMsg = form.querySelector<HTMLElement>('[data-photo-error]');
+  const photoChosenMsg = form.querySelector<HTMLElement>('[data-photo-chosen]');
 
   const setPhotoError = (message: string | null): void => {
     if (!photoErrorMsg) return;
@@ -95,10 +96,25 @@ function wireForm(form: HTMLFormElement): void {
     photoErrorMsg.hidden = !message;
   };
 
+  const setPhotoChosen = (message: string | null): void => {
+    if (!photoChosenMsg) return;
+    photoChosenMsg.textContent = message ?? '';
+    photoChosenMsg.hidden = !message;
+  };
+
   fileInput?.addEventListener('change', () => {
     const problem = fileInput.files ? photoError(fileInput.files) : null;
-    setPhotoError(problem);
-    if (problem) fileInput.value = '';
+    if (problem) {
+      setPhotoError(problem);
+      setPhotoChosen(null);
+      fileInput.value = '';
+      return;
+    }
+    const count = fileInput.files?.length ?? 0;
+    if (count === 1) setPhotoChosen(`1 photo attached — ${fileInput.files?.[0].name}`);
+    else if (count > 1) setPhotoChosen(`${count} photos attached`);
+    else setPhotoChosen(null);
+    setPhotoError(null);
   });
 
   // Turnstile is fetched on the visitor's first interaction with the form —
@@ -210,15 +226,18 @@ wirePreselect();
 
 /* ------------------------------------------------------------------- types */
 
-interface TurnstileWindow extends Window {
-  turnstile?: {
-    render: (el: HTMLElement, opts: { sitekey?: string; size?: 'normal' | 'flexible' }) => unknown;
-    reset: (el?: HTMLElement) => void;
-  };
-  __ktTurnstileReady?: () => void;
-  gtag?: (...args: unknown[]) => void;
+/* Window augmentation for the two live-site globals this script talks to
+   (Turnstile widget API and the analytics gtag). Declared inline in
+   `declare global` so there is no intermediate interface circle. */
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (el: HTMLElement, opts: { sitekey?: string; size?: 'normal' | 'flexible' }) => unknown;
+      reset: (el?: HTMLElement) => void;
+    };
+    __ktTurnstileReady?: () => void;
+    gtag?: (...args: unknown[]) => void;
+  }
 }
 
-declare global {
-  interface Window extends TurnstileWindow {}
-}
+export {};
