@@ -3,16 +3,28 @@ import Icon from './Icon.astro';
 
 const steps = [
   {
+    num: '01',
+    tone: 'ink',
     title: "Tell us what’s wrong",
     text: 'Call or send the form. A real person answers, tells you straight what it needs and locks in the first time that suits you.',
+    img: '/images/plan-1.jpg',
+    alt: 'Homeowner on a phone call booking a plumbing visit',
   },
   {
+    num: '02',
+    tone: 'brand',
     title: 'Fixed quote, on the spot',
     text: 'We diagnose it face-to-face, show you what we found and give you a fixed price. Work starts only once you approve it.',
+    img: '/images/plan-2.jpg',
+    alt: 'Invoice documents held over a timber desk',
   },
   {
+    num: '03',
+    tone: 'cta',
     title: 'Fixed, tested, tidy',
     text: 'Repair done, tested to spec and the site left spotless, walked through with you before we pull down the driveway.',
+    img: '/images/plan-3.jpg',
+    alt: 'Finished bathroom with a bath, shower and fresh towels',
   },
 ];
 ---
@@ -26,10 +38,14 @@ const steps = [
     </div>
 
     <div class="plan-grid">
-      {steps.map(({ title, text }) => (
+      {steps.map(({ num, tone, title, text, img, alt }) => (
         <article class="card plan-card">
-          <h3>{title}</h3>
-          <p>{text}</p>
+          <img class="card-thumb" src={img} alt={alt} width="800" height="520" loading="lazy" decoding="async" />
+          <div class="plan-body">
+            <span class={`plan-step plan-step--${tone}`} aria-hidden="true">{num}</span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </div>
         </article>
       ))}
     </div>

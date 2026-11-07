@@ -61,6 +61,9 @@ All photography is free stock from [Pexels](https://www.pexels.com/license/):
 - [Gas flame, #13422435 by Mateusz Feliksik](https://www.pexels.com/photo/-13422435/)
 - [Spanner repair, #10961064 by aksioart](https://www.pexels.com/photo/-10961064/)
 - [Apartment buildings, #9308434 by Mia Vargas](https://www.pexels.com/photo/-9308434/)
-- [Why-us photo, #29226620 by sejio402](https://www.pexels.com/photo/29226620/)
+- [Why-us guide background, #29226620 by sejio402](https://www.pexels.com/photo/-29226620/)
+- [Plan step 1, homeowner phone call, #4240533 by Ivan S](https://www.pexels.com/photo/-4240533/)
+- [Plan step 2, invoice in hands, #8872719 by MART PRODUCTION](https://www.pexels.com/photo/-8872719/)
+- [Plan step 3, finished bathroom, #358592 by Pixabay](https://www.pexels.com/photo/-358592/)
 
 Icons are generated from [lucide-static](https://lucide.dev) (ISC licence).

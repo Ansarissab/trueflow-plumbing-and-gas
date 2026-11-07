@@ -373,39 +373,39 @@ details.nav-menu { position: relative; }
 /* ============================================================
    Guide, why us
    ============================================================ */
-.guide { background: var(--card); border-block: 1px solid var(--line); }
-.guide .container { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 64px; align-items: center; }
-
-.guide-media { position: relative; }
-.guide-media__frame { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--line); aspect-ratio: 1 / 1.02; }
-.guide-media__frame img { width: 100%; height: 100%; object-fit: cover; }
-.guide-media .experience-pill {
-  position: absolute; bottom: 22px; left: 22px; right: 22px;
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  background: rgba(var(--ink-rgb), 0.82); backdrop-filter: blur(8px);
-  color: var(--white); border-radius: var(--radius); padding: 16px 20px; border: 1px solid rgba(var(--white-rgb), 0.14);
+.guide {
+  position: relative; overflow: hidden;
+  background: var(--ink); color: var(--on-ink);
 }
-.guide-media .experience-pill b { font-size: 1.5rem; letter-spacing: var(--track-tight); }
-.guide-media .experience-pill small { display: block; font-size: 0.78rem; font-weight: 600; color: var(--on-ink); }
-.guide-media .experience-pill .pill-badge { text-align: right; }
-.guide-media .experience-pill .pill-badge b { color: var(--cta); }
+.guide-bg, .guide-scrim { position: absolute; inset: 0; z-index: 0; }
+.guide-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 38%; }
+.guide-scrim {
+  background:
+    linear-gradient(97deg, rgba(var(--ink-rgb), 0.95) 10%, rgba(var(--ink-rgb), 0.82) 44%, rgba(var(--ink-rgb), 0.38) 76%),
+    linear-gradient(180deg, rgba(var(--ink-rgb), 0.5), rgba(var(--ink-rgb), 0.14) 42%, rgba(var(--ink-rgb), 0.7));
+}
+.guide-inner { position: relative; z-index: 1; }
 
-.guide-copy h2 { margin-bottom: 16px; }
-.guide-copy > p { margin-bottom: 26px; }
+.guide-copy { max-width: 560px; }
+.guide .eyebrow { color: var(--cta-bright); }
+.guide .eyebrow::before { background: var(--cta); box-shadow: 0 0 0 4px rgba(var(--cta-rgb), 0.22); }
+.guide-copy h2 { color: var(--white); margin-bottom: 16px; }
+.guide-copy > p { margin-bottom: 26px; color: var(--on-ink); }
 
 .guide-points { list-style: none; padding: 0; display: grid; gap: 14px; margin: 0 0 30px; }
 .guide-points li { display: flex; gap: 14px; align-items: flex-start; }
 .guide-points .point-icon {
   width: 36px; height: 36px; border-radius: 11px; flex: none;
-  background: var(--brand-tint); color: var(--brand); display: grid; place-items: center; margin-top: 2px;
+  background: rgba(var(--cta-rgb), 0.14); color: var(--cta); display: grid; place-items: center; margin-top: 2px;
 }
 .guide-points .point-icon svg { width: 18px; height: 18px; }
-.guide-points b { color: var(--ink); display: block; font-size: 0.98rem; }
-.guide-points span { font-size: 0.9rem; }
+.guide-points b { color: var(--white); display: block; font-size: 0.98rem; }
+.guide-points span { color: var(--on-ink); font-size: 0.9rem; }
 
 .guide-stats {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
   background: var(--ink); color: var(--on-ink);
+  border: 1px solid rgba(var(--white-rgb), 0.16);
   border-radius: var(--radius); padding: 24px 20px;
 }
 .guide-stats div { text-align: center; }
@@ -415,16 +415,18 @@ details.nav-menu { position: relative; }
 /* ============================================================
    Plan
    ============================================================ */
-.plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: step; }
-.plan-card { position: relative; padding: 30px 28px 26px; }
-.plan-card::before {
-  counter-increment: step; content: "0" counter(step);
+.plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.plan-card { overflow: hidden; display: flex; flex-direction: column; }
+.plan-card .card-thumb { width: 100%; aspect-ratio: 40 / 26; object-fit: cover; }
+.plan-body { padding: 20px 24px 26px; }
+.plan-step {
   display: inline-grid; place-items: center;
-  width: 46px; height: 46px; border-radius: 14px; margin-bottom: 18px;
-  background: var(--ink); color: var(--white); font-weight: 800; font-size: 1rem; letter-spacing: 0.04em;
+  width: 44px; height: 44px; border-radius: 13px; margin-bottom: 14px;
+  font-weight: 800; font-size: 0.95rem; letter-spacing: 0.04em;
 }
-.plan-card:nth-child(2)::before { background: var(--brand); }
-.plan-card:nth-child(3)::before { background: var(--cta); color: var(--cta-ink); }
+.plan-step--ink { background: var(--ink); color: var(--white); }
+.plan-step--brand { background: var(--brand); color: var(--white); }
+.plan-step--cta { background: var(--cta); color: var(--cta-ink); }
 .plan-card h3 { margin-bottom: 10px; }
 .plan-card p { font-size: 0.95rem; }
 
@@ -480,11 +482,11 @@ details.nav-menu { position: relative; }
 /* ============================================================
    FAQ
    ============================================================ */
-.faq-list { max-width: 780px; margin: 0 auto; display: grid; gap: 12px; }
+.faq-list { max-width: 780px; margin: 0 auto; display: grid; gap: 8px; }
 .faq-item { overflow: hidden; }
 .faq-item summary {
   list-style: none; display: flex; align-items: center; gap: 16px; justify-content: space-between;
-  padding: 20px 24px; cursor: pointer; font-weight: 700; color: var(--ink); font-size: 1.02rem;
+  padding: 14px 22px; cursor: pointer; font-weight: 700; color: var(--ink); font-size: 1.02rem;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary .faq-chevron {
@@ -495,7 +497,7 @@ details.nav-menu { position: relative; }
 .faq-item summary .faq-chevron svg { width: 16px; height: 16px; }
 .faq-item[open] summary .faq-chevron { transform: rotate(45deg); background: var(--brand); color: var(--white); }
 .faq-item[open] summary { border-bottom: 1px solid var(--line); }
-.faq-item .faq-body { padding: 18px 24px 24px; font-size: 0.96rem; }
+.faq-item .faq-body { padding: 10px 22px 18px; font-size: 0.96rem; }
 .faq-item:hover summary { background: rgba(var(--brand-rgb), 0.03); }
 
 /* ============================================================
@@ -569,7 +571,7 @@ details.nav-menu { position: relative; }
 .footer-links a:hover { color: var(--white); }
 .footer-contact { list-style: none; padding: 0; display: grid; gap: 12px; }
 .footer-contact li { display: flex; gap: 10px; align-items: flex-start; }
-.footer-contact svg { width: 16px; height: 16px; color: var(--brand-bright); flex: none; margin-top: 3px; }
+.footer-contact svg { width: 16px; height: 16px; color: var(--cta); flex: none; margin-top: 3px; }
 .footer-contact a { color: var(--white); text-decoration: none; }
 .footer-contact a:hover { color: var(--cta); }
 
@@ -599,9 +601,7 @@ details.nav-menu { position: relative; }
 
 @media (max-width: 980px) {
   .services-grid, .problem-grid, .plan-grid, .reviews-grid { grid-template-columns: repeat(2, 1fr); }
-  .guide .container { grid-template-columns: 1fr; gap: 44px; }
   .contact .container { grid-template-columns: 1fr; gap: 40px; }
-  .guide-media { max-width: 560px; }
   .site-footer .footer-main { grid-template-columns: 1fr 1fr; gap: 40px; }
 }
 
@@ -638,12 +638,11 @@ details.nav-menu { position: relative; }
   .hero-logos span { font-size: 0.86rem; }
   .hero-logos svg { width: 20px; height: 20px; }
   .hero-logos .divider { display: none; }
-  .guide-media .experience-pill { bottom: 14px; left: 14px; right: 14px; padding: 12px 14px; }
-  .guide-media .experience-pill b { font-size: 1.2rem; }
   .problem-body, .service-body { padding: 20px 18px 22px; }
-  .plan-card::before { width: 40px; height: 40px; border-radius: 12px; font-size: 0.9rem; }
-  .faq-item summary { padding: 16px 18px; font-size: 0.96rem; }
-  .faq-item .faq-body { padding: 14px 18px 18px; }
+  .plan-body { padding: 18px 16px 22px; }
+  .plan-step { width: 40px; height: 40px; border-radius: 12px; margin-bottom: 12px; }
+  .faq-item summary { padding: 12px 16px; font-size: 0.96rem; }
+  .faq-item .faq-body { padding: 10px 16px 14px; }
   .contact-card { padding: 16px; }
   .quote-form { padding: 24px 20px; }
   .btn { height: 48px; }
