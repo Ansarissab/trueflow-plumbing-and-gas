@@ -1,0 +1,90 @@
+---
+import Icon from './Icon.astro';
+
+const points = [
+  {
+    icon: 'badge' as const,
+    title: 'Licensed & guaranteed',
+    text: 'QBCC-licensed, fully insured, and every job is backed by the TrueFlow guarantee.',
+  },
+  {
+    icon: 'wallet' as const,
+    title: 'Fixed prices, approved first',
+    text: 'You see the number and say the word before we start. What we quote is what lands on the invoice.',
+  },
+  {
+    icon: 'clock' as const,
+    title: 'We turn up when we say',
+    text: 'A live arrival window, and a phone call the minute anything changes.',
+  },
+  {
+    icon: 'sparkles' as const,
+    title: 'Your home left better',
+    text: 'Boot covers, drop sheets and a full wipe-down before we go, so you can barely tell we were there.',
+  },
+];
+
+const stats = [
+  { value: '15+', label: 'Years on the tools' },
+  { value: '300+', label: 'Jobs a year' },
+  { value: '4.9★', label: 'Client rating' },
+  { value: '100%', label: 'Fixed-price quotes' },
+];
+---
+
+<section id="why-us" class="guide section" aria-labelledby="guide-heading">
+  <div class="container">
+    <div class="guide-media">
+      <div class="guide-media__frame">
+        <img
+          src="/images/guide-plumber.jpg"
+          alt="TrueFlow plumber replacing pipework with professional spanners on a drop sheet"
+          width="1100"
+          height="1100"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <p class="experience-pill">
+        <span>
+          <b>15+ yrs</b>
+          <small>on Southside &amp; Logan homes</small>
+        </span>
+        <span class="pill-badge">
+          <b>300+</b>
+          <small>jobs every year</small>
+        </span>
+      </p>
+    </div>
+
+    <div class="guide-copy">
+      <p class="eyebrow">Why TrueFlow</p>
+      <h2 id="guide-heading">Run by a plumber, not a call centre.</h2>
+      <p>
+        TrueFlow started on the south side with a tradie who was tired of being
+        booked out to clean up other companies’ quick fixes. Fifteen years on,
+        we’re still a small local crew, with better tools and a guarantee we
+        take personally.
+      </p>
+      <ul class="guide-points">
+        {points.map(({ icon, title, text }) => (
+          <li>
+            <span class="point-icon"><Icon name={icon} /></span>
+            <div>
+              <b>{title}</b>
+              <span>{text}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <div class="guide-stats">
+        {stats.map(({ value, label }) => (
+          <div>
+            <b>{value}</b>
+            <small>{label}</small>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

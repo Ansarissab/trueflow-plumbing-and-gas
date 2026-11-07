@@ -1,0 +1,114 @@
+---
+import '@fontsource-variable/plus-jakarta-sans';
+import '../styles/global.css';
+
+import Topbar from '../components/Topbar.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Preload the hero image (only on pages that render one). */
+  preloadHero?: boolean;
+}
+
+const { title, description, preloadHero = false } = Astro.props;
+
+const SITE = Astro.site ?? new URL('https://trueflow-demo.pages.dev/');
+const canonical = new URL(Astro.url.pathname, SITE).href;
+const ogImage = new URL('/images/og.jpg', SITE).href;
+
+const suburbs = [
+  'Mount Gravatt',
+  'Carindale',
+  'Coorparoo',
+  'Sunnybank',
+  'Rochedale',
+  'Springwood',
+  'Logan Central',
+  'Browns Plains',
+  'Beenleigh',
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE.href}#website`,
+      url: SITE.href,
+      name: 'TrueFlow Plumbing & Gas',
+      publisher: { '@id': `${SITE.href}#business` },
+      inLanguage: 'en-AU',
+    },
+    {
+      '@type': 'Plumber',
+      '@id': `${SITE.href}#business`,
+      name: 'TrueFlow Plumbing & Gas',
+      url: SITE.href,
+      telephone: '+61 1300 478 879',
+      image: ogImage,
+      priceRange: '$$',
+      inLanguage: 'en-AU',
+      address: {
+        '@type': 'PostalAddress',
+        addressRegion: 'QLD',
+        addressCountry: 'AU',
+      },
+      areaServed: suburbs.map((name) => ({ '@type': 'Place', name })),
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+          opens: '06:30',
+          closes: '19:00',
+        },
+      ],
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#f6f9fc" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TrueFlow Plumbing & Gas" />
+    <meta property="og:locale" content="en_AU" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Licensed TrueFlow plumber tightening a tap fitting under a kitchen sink" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {preloadHero && <link rel="preload" as="image" href="/images/hero-plumber.jpg" fetchpriority="high" />}
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <Topbar />
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

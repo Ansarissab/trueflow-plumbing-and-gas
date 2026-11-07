@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+
+const phone = '1300 478 879';
+const tel = `tel:+611300478879`;
+---
+
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-hide">
+      <Icon name="shield" aria-hidden="true" />
+      <span>Licensed QBCC 1234567</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span>Fixed-price quotes</span>
+    </div>
+    <div>
+      <Icon name="pin" aria-hidden="true" />
+      <span>Serving Brisbane Southside &amp; Logan</span>
+      <span class="dot" aria-hidden="true"></span>
+      <a href={tel}>{phone}</a>
+    </div>
+  </div>
+</div>

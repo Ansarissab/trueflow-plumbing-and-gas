@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'Page not found | TrueFlow Plumbing & Gas';
+const description =
+  'That page has gone down the drain. Head back to TrueFlow Plumbing & Gas, licensed plumbers for Brisbane Southside and Logan.';
+---
+
+<Base title={title} description={description}>
+  <section class="error-hero">
+    <div>
+      <p class="eyebrow eyebrow--center">404</p>
+      <h1>This page went down the drain.</h1>
+      <p>
+        The page you’re after doesn’t exist. The good news is the rest of the
+        plumbing here works just fine.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn--brand" href="/">Back to home</a>
+        <a class="btn btn--ghost" href="#contact">Get a quote</a>
+      </div>
+    </div>
+  </section>
+</Base>

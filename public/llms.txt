@@ -1,0 +1,29 @@
+# TrueFlow Plumbing & Gas
+
+> Fictional demo website for a licensed plumbing and gas business serving
+> Brisbane Southside and Logan, Queensland. Built with Astro (static output)
+> and deployable to Cloudflare Pages. This site is a portfolio showcase,
+> not a real business.
+
+## Business facts (demo placeholders)
+- Phone: 1300 478 879 (placeholder)
+- Hours: Mon–Sat, 6:30am–7pm
+- QBCC licence 1234567 and ABN 12 345 678 901 (placeholders)
+- Suburbs: Mount Gravatt, Carindale, Coorparoo, Sunnybank, Rochedale, Springwood, Logan Central, Browns Plains, Beenleigh
+
+## Page map
+- `/` (single-page conversion site, StoryBrand PEACE structure):
+  - Hero: same-day promise, phone CTA, trust signals
+  - `#services`: six services: blocked drains, hot water systems, bathroom & kitchen, gas fitting, repairs & maintenance, strata & commercial
+  - `#why-us`: differentiators (licensing, fixed pricing, punctuality, tidiness) plus stats
+  - `#how-it-works`: three-step process and the "fixed today or we come back free" guarantee
+  - `#reviews`: three testimonials (fictional, labelled as Google-review style text only)
+  - `#faq`: six FAQs, mirrored in FAQPage JSON-LD
+  - `#contact`: demo enquiry form (client-side only, nothing is transmitted) plus phone, hours, licences and service area
+- `/404`: friendly not-found page
+
+## Agentic and automation notes
+- The enquiry form does not send data anywhere; the success message is client-side only.
+- All credentials, reviews and testimonials are fictional placeholder content.
+- Photos are used under the Pexels licence (AR Abnoy #16509869 hero, sejio402 #29226620 why-us).
+- Structured data: JSON-LD `WebSite` and `Plumber` (LocalBusiness) on `/`, `FAQPage` on `#faq`.

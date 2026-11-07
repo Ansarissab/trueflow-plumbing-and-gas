@@ -1,0 +1,45 @@
+---
+import Icon from './Icon.astro';
+
+const steps = [
+  {
+    title: "Tell us what’s wrong",
+    text: 'Call or send the form. A real person answers, tells you straight what it needs and locks in the first time that suits you.',
+  },
+  {
+    title: 'Fixed quote, on the spot',
+    text: 'We diagnose it face-to-face, show you what we found and give you a fixed price. Work starts only once you approve it.',
+  },
+  {
+    title: 'Fixed, tested, tidy',
+    text: 'Repair done, tested to spec and the site left spotless, walked through with you before we pull down the driveway.',
+  },
+];
+---
+
+<section id="how-it-works" class="section" aria-labelledby="plan-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow eyebrow--center">How it works</p>
+      <h2 id="plan-heading">Three steps and it’s sorted.</h2>
+      <p>No phone tag, no all-day arrival windows and no mystery around money.</p>
+    </div>
+
+    <div class="plan-grid">
+      {steps.map(({ title, text }) => (
+        <article class="card plan-card">
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </article>
+      ))}
+    </div>
+
+    <p class="guarantee">
+      <span class="g-icon"><Icon name="checkCircle" /></span>
+      <span>
+        <strong>The TrueFlow guarantee: fixed today, or we come back free.</strong>
+        <small>Same-day repairs are guaranteed for 90 days, return visits are on us, and your price never changes midway.</small>
+      </span>
+    </p>
+  </div>
+</section>

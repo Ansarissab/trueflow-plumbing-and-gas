@@ -1,0 +1,133 @@
+---
+import Icon from './Icon.astro';
+
+const phone = '1300 478 879';
+const tel = 'tel:+611300478879';
+
+const suburbs = [
+  'Mount Gravatt',
+  'Carindale',
+  'Coorparoo',
+  'Sunnybank',
+  'Rochedale',
+  'Springwood',
+  'Logan Central',
+  'Browns Plains',
+  'Beenleigh',
+];
+
+const serviceOptions = [
+  'Blocked drain',
+  'Hot water system',
+  'Leak or burst pipe',
+  'Gas fitting',
+  'Bathroom / kitchen',
+  'Maintenance / other',
+];
+---
+
+<section id="contact" class="contact section" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="contact-copy">
+      <p class="eyebrow">Get TrueFlow on the tools</p>
+      <h2 id="contact-heading">Let’s get it sorted.</h2>
+      <p>
+        Tell us what’s happening and a real person calls you back, usually
+        inside the hour. Prefer talking? The phone answers 6:30am–7pm,
+        Monday to Saturday.
+      </p>
+
+      <div class="contact-cards">
+        <div class="card contact-card">
+          <span class="c-icon c-icon--amber"><Icon name="phone" /></span>
+          <div>
+            <small>Call or text</small>
+            <b><a href={tel}>{phone}</a></b>
+            <span>A real person answers Mon–Sat, 6:30am–7pm</span>
+          </div>
+        </div>
+        <div class="card contact-card">
+          <span class="c-icon"><Icon name="pin" /></span>
+          <div>
+            <small>Service area</small>
+            <b>Brisbane Southside &amp; Logan</b>
+            <span>From Mount Gravatt to Beenleigh. Full list below.</span>
+          </div>
+        </div>
+        <div class="card contact-card">
+          <span class="c-icon"><Icon name="shield" /></span>
+          <div>
+            <small>Licences</small>
+            <b>QBCC 1234567 · ABN 12 345 678 901</b>
+            <span>Fully licensed for plumbing, drainage and gas.</span>
+          </div>
+        </div>
+      </div>
+
+      <ul class="areas" aria-label="Suburbs we service">
+        {suburbs.map((name) => <li>{name}</li>)}
+      </ul>
+    </div>
+
+    <div class="card quote-form">
+      <h3>Request a callback</h3>
+      <p class="form-sub">No obligation. We ring you back, usually within the hour.</p>
+
+      <form id="quote-request" method="post" action="#">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="tf-name">Your name <em aria-hidden="true">*</em></label>
+            <input id="tf-name" name="name" type="text" required aria-required="true" autocomplete="name" placeholder="e.g. J. Nguyen" />
+          </div>
+          <div class="form-field">
+            <label for="tf-phone">Phone <em aria-hidden="true">*</em></label>
+            <input id="tf-phone" name="phone" type="tel" required aria-required="true" autocomplete="tel" placeholder="04XX XXX XXX" inputmode="tel" />
+          </div>
+          <div class="form-field">
+            <label for="tf-suburb">Suburb</label>
+            <input id="tf-suburb" name="suburb" type="text" autocomplete="address-level2" placeholder="e.g. Mount Gravatt" />
+          </div>
+          <div class="form-field">
+            <label for="tf-service">What’s the job?</label>
+            <select id="tf-service" name="service">
+              <option value="" selected>Choose a service…</option>
+              {serviceOptions.map((option) => <option value={option}>{option}</option>)}
+            </select>
+          </div>
+          <div class="form-field form-field--full">
+            <label for="tf-message">Anything we should know?</label>
+            <textarea id="tf-message" name="message" placeholder="A sentence is plenty, e.g. “water pooling under the kitchen sink since Tuesday”"></textarea>
+          </div>
+        </div>
+        <button class="btn btn--brand" type="submit">
+          Request my callback
+          <Icon name="arrow" aria-hidden="true" />
+        </button>
+        <p class="form-fine">
+          Demo form. Submissions stay in your browser and aren’t sent anywhere.
+        </p>
+      </form>
+
+      <div id="quote-success" class="form-success" hidden aria-live="polite">
+        <span class="ok-icon"><Icon name="check" /></span>
+        <p>
+          <b>Request received. We’ll call you back shortly.</b><br />
+          (Demo only, nothing was actually sent.)
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('quote-request') as HTMLFormElement | null;
+  const success = document.getElementById('quote-success');
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    form.hidden = true;
+    success?.removeAttribute('hidden');
+    success?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+</script>

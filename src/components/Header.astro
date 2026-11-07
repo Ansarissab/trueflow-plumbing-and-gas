@@ -1,0 +1,58 @@
+---
+import Icon from './Icon.astro';
+
+const phone = '1300 478 879';
+const tel = 'tel:+611300478879';
+
+const navLinks = [
+  { href: '#services', label: 'Services' },
+  { href: '#why-us', label: 'Why us' },
+  { href: '#how-it-works', label: 'How it works' },
+  { href: '#reviews', label: 'Reviews' },
+  { href: '#faq', label: 'FAQ' },
+];
+---
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/" aria-label="TrueFlow Plumbing &amp; Gas, back to top">
+      <span class="brand__mark">
+        <Icon name="droplet" aria-hidden="true" />
+      </span>
+      <span>
+        <span class="brand__name">True<span>Flow</span></span>
+        <span class="brand__tag">Plumbing &amp; Gas</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      {navLinks.map(({ href, label }) => <a href={href}>{label}</a>)}
+    </nav>
+
+    <div class="header-actions">
+      <a class="phone-link header-phone" href={tel}>
+        <Icon name="phone" aria-hidden="true" />
+        {phone}
+      </a>
+      <a class="btn btn--sm btn--brand" href="#contact">Get a quote</a>
+
+      <details class="nav-menu">
+        <summary class="nav-menu-btn" aria-label="Open navigation menu">
+          <span class="icon-open"><Icon name="menu" aria-hidden="true" /></span>
+          <span class="icon-close"><Icon name="x" aria-hidden="true" /></span>
+        </summary>
+        <div class="nav-menu-panel">
+          <nav aria-label="Mobile">
+            {navLinks.map(({ href, label }) => <a href={href}>{label}</a>)}
+          </nav>
+          <div class="nav-cta">
+            <a class="btn btn--brand" href={tel}>
+              <Icon name="phone" aria-hidden="true" />Call {phone}
+            </a>
+            <a class="btn btn--ghost" href="#contact">Get a free quote</a>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>

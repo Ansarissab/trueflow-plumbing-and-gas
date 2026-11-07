@@ -1,0 +1,77 @@
+---
+import Icon from './Icon.astro';
+
+const phone = '1300 478 879';
+const tel = 'tel:+611300478879';
+
+const reviews = [
+  {
+    initials: 'NR',
+    tone: '',
+    name: 'Nadia R.',
+    suburb: 'Mount Gravatt',
+    quote:
+      'Water was coming through our ceiling at 7am with two kids to get to school. TrueFlow answered on the second ring, Nick was here by nine, and the quote he gave was the invoice that landed, down to the cent.',
+  },
+  {
+    initials: 'TH',
+    tone: 'avatar--teal',
+    name: 'Tom & Elise H.',
+    suburb: 'Springwood',
+    quote:
+      "Two other companies said ‘a couple of days’ about our dead hot water system. TrueFlow quoted a replacement on the spot and we had a hot shower that night. They even serviced the showerhead while they were here.",
+  },
+  {
+    initials: 'PS',
+    tone: 'avatar--amber',
+    name: 'Priya S.',
+    suburb: 'Logan Central',
+    quote:
+      'Three weeks of mopping around a slow-draining shower after another fix fell over. TrueFlow found a root ball near the boundary, jetted it and showed us before-and-after on the camera. The mop is retired.',
+  },
+];
+---
+
+<section id="reviews" class="reviews section" aria-labelledby="reviews-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow eyebrow--center">Good news travels</p>
+      <h2 id="reviews-heading">They called a plumber. They got a solution.</h2>
+      <p>Words from homes between Mount Gravatt and the Logan River.</p>
+    </div>
+
+    <div class="reviews-grid">
+      {reviews.map(({ initials, tone, name, suburb, quote }) => (
+        <figure class="review-card">
+          <span class="stars stars--filled" aria-hidden="true">
+            <Icon name="star" /><Icon name="star" /><Icon name="star" /><Icon name="star" /><Icon name="star" />
+          </span>
+          <blockquote>
+            <p>{quote}</p>
+          </blockquote>
+          <figcaption>
+            <span class={`avatar ${tone}`} aria-hidden="true">{initials}</span>
+            <span>
+              <b>{name}</b>
+              <span>{suburb}</span>
+            </span>
+            <span class="review-source">Google review</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <div class="reviews-cta">
+      <p>
+        Book once, relax, and stop keeping the mop handy.
+        <strong>That’s the whole idea.</strong>
+      </p>
+      <div class="hero-ctas" style="justify-content:center; margin-top:0;">
+        <a class="btn btn--primary" href={tel}>
+          <Icon name="phone" aria-hidden="true" />Call {phone}
+        </a>
+        <a class="btn btn--ghost-light" href="#contact">Get a free quote</a>
+      </div>
+    </div>
+  </div>
+</section>

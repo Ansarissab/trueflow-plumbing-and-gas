@@ -1,0 +1,65 @@
+---
+import Icon from './Icon.astro';
+
+const faqs = [
+  {
+    q: 'Do you charge a call-out fee?',
+    a: 'Never. Driving out, diagnosing and quoting costs you nothing. You’re only billed the fixed price you approve, and only once we actually start work.',
+  },
+  {
+    q: 'Can you come today?',
+    a: 'Most days, yes, for homes across Brisbane’s southside and Logan. Call before midday for the best chance of a same-day slot, and genuine emergencies (flood, burst pipe or gas smell) are always triaged first.',
+  },
+  {
+    q: 'Are you licensed and insured?',
+    a: 'Fully. We hold QBCC licence 1234567 and carry $20 million in public liability insurance. Every gas job leaves with a compliance certificate, and we can produce both documents before we start.',
+  },
+  {
+    q: 'What will it cost?',
+    a: 'Repairs are quoted as a fixed price before we start, so the number you approve is the number you pay. As a guide, drain clearing starts at $189 and hot-water installs begin at $1,090. Your exact quote is always confirmed on site first.',
+  },
+  {
+    q: 'Do you work after hours?',
+    a: 'We run Monday to Saturday until 7pm, and take by-arrangement call-outs for floods, burst pipes and gas smells. If your job can safely wait for morning, an honest plumber will tell you.',
+  },
+  {
+    q: 'Which suburbs do you cover?',
+    a: 'All of Brisbane’s south through to Logan: Mount Gravatt, Carindale, Coorparoo, Sunnybank, Rochedale, Springwood, Logan Central, Browns Plains, Beenleigh and everywhere in between.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+---
+
+<section id="faq" class="section section-alt" aria-labelledby="faq-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow eyebrow--center">Before you call</p>
+      <h2 id="faq-heading">Straight answers, no plumber-speak.</h2>
+      <p>The questions Brisbane and Logan households ask us most.</p>
+    </div>
+
+    <div class="faq-list">
+      {faqs.map(({ q, a }) => (
+        <details class="card faq-item">
+          <summary>
+            {q}
+            <span class="faq-chevron" aria-hidden="true">
+              <Icon name="chevron" />
+            </span>
+          </summary>
+          <div class="faq-body">{a}</div>
+        </details>
+      ))}
+    </div>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</section>

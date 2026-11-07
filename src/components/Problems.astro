@@ -1,0 +1,69 @@
+---
+import Icon from './Icon.astro';
+
+const problems = [
+  {
+    icon: 'droplets' as const,
+    title: 'Blocked & slow drains',
+    text: "The kitchen sink gurgles, the shower fills to your ankles and someone’s mopping again.",
+  },
+  {
+    icon: 'hot' as const,
+    title: 'Hot water, gone',
+    text: "‘A couple of days’ is the only answer anyone will give you, and everyone in the street seems to have had a cold start this week.",
+  },
+  {
+    icon: 'wrench' as const,
+    title: 'Burst & leaking pipes',
+    text: 'Water is coming through a ceiling that was perfectly fine yesterday.',
+  },
+  {
+    icon: 'wallet' as const,
+    title: 'Surprise invoices',
+    text: "The ‘quick fix’ that turned into work you never approved and a bill you didn’t sign off.",
+  },
+  {
+    icon: 'clock' as const,
+    title: "Tradies who don’t show",
+    text: 'The four-hour arrival window that quietly becomes all day. No call, no courtesy.',
+  },
+  {
+    icon: 'alert' as const,
+    title: "The jobs you’ve put off",
+    text: "That dripping tap you’ve learned to live with is quietly eating your water bill.",
+  },
+];
+---
+
+<section class="problems section" aria-labelledby="problems-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow eyebrow--center">Sound familiar?</p>
+      <h2 id="problems-heading">Plumbing problems never pick an easy day.</h2>
+      <p>
+        They wait for the school-morning shower, the Christmas lunch roast and
+        the fortnight the budget’s already stretched. If one of these lives in
+        your house right now, you’re in good company.
+      </p>
+    </div>
+
+    <div class="problem-grid">
+      {problems.map(({ icon, title, text }) => (
+        <article class="problem-card">
+          <span class="problem-icon"><Icon name={icon} /></span>
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </article>
+      ))}
+    </div>
+
+    <p class="problem-note">
+      None of this means you’re doing anything wrong. It means you need one
+      reliable answer instead of another lucky dip, and that is exactly what we
+      built TrueFlow to be.
+      <span class="punch">
+        A real person picks up. We come when we say. We quote before we touch a pipe.
+      </span>
+    </p>
+  </div>
+</section>

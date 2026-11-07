@@ -1,0 +1,97 @@
+---
+import Icon from './Icon.astro';
+
+const phone = '1300 478 879';
+const tel = 'tel:+611300478879';
+
+const assurances = [
+  'Fixed-price quote before we start',
+  'No call-out fee. Ever.',
+  'Same-day service for most jobs',
+];
+
+const trustItems = [
+  { icon: 'shield' as const, label: 'QBCC-licensed & insured' },
+  { icon: 'badge' as const, label: 'Fixed prices, approved first' },
+  { icon: 'wrench' as const, label: '15+ years on the tools' },
+  { icon: 'pin' as const, label: 'Locally owned & operated' },
+];
+---
+
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="container">
+    <div class="hero-copy">
+      <p class="eyebrow">Brisbane Southside &amp; Logan plumbers</p>
+      <h1 id="hero-heading">
+        Call today, fixed today. <em>The price we quote is the price you pay.</em>
+      </h1>
+      <p class="hero-sub">
+        Burst pipe? No hot water? Drain backing up? We know that sinking
+        feeling. TrueFlow sends a licensed plumber who arrives when he says,
+        quotes before he starts and gets your water straight again, with no
+        mystery invoice at the end.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn--primary" href={tel}>
+          <Icon name="phone" aria-hidden="true" />Call {phone}
+        </a>
+        <a class="btn btn--ghost" href="#contact">Get a free quote</a>
+      </div>
+      <p class="hero-cta-note">No obligation, just straight answers.</p>
+      <ul class="hero-assurances">
+        {assurances.map((text) => (
+          <li>
+            <Icon name="checkCircle" aria-hidden="true" />
+            {text}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="hero-media">
+      <div class="hero-media__portrait">
+        <img
+          src="/images/hero-plumber.jpg"
+          alt="Licensed TrueFlow plumber tightening a tap fitting under a kitchen sink"
+          width="1200"
+          height="1380"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+      <div class="float-card float-card--reviews">
+        <span class="stars stars--filled" aria-hidden="true">
+          <Icon name="star" /><Icon name="star" /><Icon name="star" /><Icon name="star" /><Icon name="star" />
+        </span>
+        <div>
+          <strong>4.9★ from 300+ reviews</strong>
+          <small>Google reviews · demo data</small>
+        </div>
+      </div>
+      <div class="float-card float-card--guarantee">
+        <span class="badge-icon badge-icon--amber">
+          <Icon name="badge" aria-hidden="true" />
+        </span>
+        <div>
+          <strong>Fixed today, or we come back free</strong>
+          <small>The TrueFlow guarantee</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-logos">
+    <div class="container">
+      {trustItems.map(({ icon, label }, i) => (
+        <>
+          {i > 0 && <span class="divider" aria-hidden="true"></span>}
+          <span>
+            <Icon name={icon} aria-hidden="true" />
+            {label}
+          </span>
+        </>
+      ))}
+    </div>
+  </div>
+</section>

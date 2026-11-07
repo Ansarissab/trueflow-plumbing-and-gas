@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Problems from '../components/Problems.astro';
+import Services from '../components/Services.astro';
+import Guide from '../components/Guide.astro';
+import Plan from '../components/Plan.astro';
+import Reviews from '../components/Reviews.astro';
+import Faq from '../components/Faq.astro';
+import Contact from '../components/Contact.astro';
+
+const title = 'TrueFlow Plumbing & Gas | Same-Day Plumbers, Brisbane Southside & Logan';
+const description =
+  'Blocked drains, burst pipes and hot water systems fixed today by licensed local plumbers. Fixed prices, no call-out fee, across Brisbane Southside and Logan.';
+---
+
+<Base title={title} description={description} preloadHero>
+  <Hero />
+  <Problems />
+  <Services />
+  <Guide />
+  <Plan />
+  <Reviews />
+  <Faq />
+  <Contact />
+</Base>

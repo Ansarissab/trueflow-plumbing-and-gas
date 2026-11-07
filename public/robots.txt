@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://trueflow-demo.pages.dev/sitemap-index.xml
