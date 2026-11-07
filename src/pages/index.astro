@@ -1,0 +1,112 @@
+---
+/**
+ * Moral Service — homepage redesign, Design 1 ("The Rate Card").
+ *
+ * Only this page is authored. Every other route is the untouched static copy
+ * of moralservice.com.au served from public/ — see README.
+ *
+ * Section order (conversion arc: call early, offer, proof, price, objections,
+ * form), preserving every anchor id from the live homepage:
+ *   #services #about #why #work #reviews #locations #faq #quote
+ */
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import Services from '../components/Services.astro';
+import WhyMoral from '../components/WhyMoral.astro';
+import Brothers from '../components/Brothers.astro';
+import WorkGallery from '../components/WorkGallery.astro';
+import Reviews from '../components/Reviews.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import ServiceAreas from '../components/ServiceAreas.astro';
+import Faq from '../components/Faq.astro';
+import FinalCta from '../components/FinalCta.astro';
+import Footer from '../components/Footer.astro';
+import MobileContactBar from '../components/MobileContactBar.astro';
+
+const title = 'Plumbing & Electrical Gold Coast | Moral Service — Plumbing & Electrical';
+const description =
+  'Reliable plumbing & electrical services across the Gold Coast. Owned and run by two brothers — Shaun and Justin. Free fixed quotes, licensed in both trades, 24/7 emergencies.';
+
+/** One source of truth for FAQ copy: rendered on-page + FAQPage JSON-LD. */
+const faqs: { q: string; a: string[] }[] = [
+  {
+    q: 'Do you do both plumbing and electrical?',
+    a: [
+      'Yes. Moral Service is licensed in both, which means one team and one call for jobs that need a plumber, an electrician, or both.',
+    ],
+  },
+  {
+    q: 'Are you licensed and insured?',
+    a: [
+      'Fully. QLD Plumbing Licence #15290166, QLD Electrical Licence #89994, NSW Licence #455163C, and we carry full insurance.',
+    ],
+  },
+  {
+    q: 'Do you give free quotes?',
+    a: [
+      'For most jobs, yes. If we can price it from a call or a few photos (a hot water swap, a new tap, extra power points), the quote is free and the price is fixed.',
+      'If the problem needs finding first, like a hidden leak, a tripping circuit or a drain that keeps blocking, we book a diagnosis visit for $88 inc GST. That covers the first 30 minutes on site. Go ahead with the repair within 14 days and the $88 comes off your invoice.',
+    ],
+  },
+  {
+    q: 'What areas do you cover?',
+    a: ['The whole Gold Coast, from the southern beaches up to the northern suburbs.'],
+  },
+  {
+    q: 'Will the price change after you start the work?',
+    a: [
+      'No. Once you approve the fixed price, that’s what you pay. If something genuinely unforeseen turns up, we stop and talk to you before going any further.',
+      'If a fault takes longer than 30 minutes to track down, extra investigation is $165/hr inc GST, charged in 15-minute blocks. We’ll let you know before we run past the first 30 minutes.',
+    ],
+  },
+  {
+    q: 'Do you guarantee your work?',
+    a: [
+      'Yes. Every job on your home comes with a lifetime workmanship warranty. If a problem is caused by how we installed or repaired something, we come back and fix it at no charge for as long as our work is in place. Parts we supply are covered for 12 months, and blocked drains cleared with our CCTV and jet rodding combo carry a 90-day guarantee. Commercial, strata and builder work carries a 12-month workmanship warranty. <a href="Moral%20Service%20Warranty.pdf">Read the full warranty →</a>',
+    ],
+  },
+  {
+    q: 'What are your hours? Do you do emergencies?',
+    a: [
+      'Our standard hours are 7am to 5pm, Monday to Friday. For emergencies like burst pipes, no power or a blocked sewer, we’re available 24/7 and offer same-day service. Call <a href="tel:1300522107">1300 522 107</a>.',
+    ],
+  },
+];
+
+/** FAQPage JSON-LD generated from the same array that renders on the page. */
+const answerText = (a: string[]) => a.map((p) => p.replace(/<[^>]+>/g, '')).join(' ');
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: answerText(f.a) },
+  })),
+});
+---
+
+<Base title={title} description={description} schema={faqSchema}>
+  <Header />
+  <main id="main">
+    <Hero />
+    <TrustStrip />
+    <Services />
+    <WhyMoral />
+    <Brothers />
+    <WorkGallery />
+    <Reviews />
+    <ProcessSteps />
+    <ServiceAreas />
+    <Faq faqs={faqs} />
+    <FinalCta />
+  </main>
+  <Footer />
+  <MobileContactBar />
+</Base>
+
+<script>
+  import '../scripts/quote-form.ts';
+</script>

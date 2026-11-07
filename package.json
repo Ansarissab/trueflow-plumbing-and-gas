@@ -1,0 +1,21 @@
+{
+  "name": "moralservice-site",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Moral Service — Gold Coast plumbing & electrical. Homepage redesign (Design 1: 'The Rate Card') built in Astro. All other routes are served verbatim from public/.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.16.0"
+  },
+  "allowScripts": {
+    "esbuild@0.27.7": true,
+    "esbuild@0.25.12": true
+  }
+}

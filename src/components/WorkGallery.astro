@@ -1,0 +1,65 @@
+---
+/**
+ * Real work — three genuine job photos from the site's own service pages,
+ * with captions that describe the photo (no invented job claims), plus a
+ * pointer to the two Instagram accounts the site runs.
+ */
+const items = [
+  {
+    src: 'services/cctv-inspections.jpg',
+    alt: 'The CCTV drain inspection reel set up at the kerb on a Gold Coast job',
+    cap: 'CCTV drain inspection',
+    sub: 'You see the footage yourself — no guesswork.',
+  },
+  {
+    src: 'services/hot-water.jpg',
+    alt: 'An outdoor hot water system being repaired at a Gold Coast home',
+    cap: 'Hot water systems',
+    sub: 'Gas, electric, solar or heat pump.',
+  },
+  {
+    src: 'services/switchboards.jpg',
+    alt: 'A Moral Service electrician working on a home switchboard with an insulated screwdriver',
+    cap: 'Switchboard upgrades',
+    sub: 'Brought up to current Australian standards.',
+  },
+];
+---
+
+<section class="work section" id="work">
+  <div class="container">
+    <div class="shead">
+      <span class="label">On the tools</span>
+      <h2 class="display">Job sites, <span class="hl">not stock photos.</span></h2>
+      <p class="lead">
+        Photos from real Moral Service work around the Gold Coast. We post the day-to-day
+        on Instagram too —
+        <a href="https://www.instagram.com/moral_lads/" target="_blank" rel="noopener">@moral_lads</a>
+        &amp;
+        <a href="https://www.instagram.com/moralelectrical/" target="_blank" rel="noopener">@moralelectrical</a>.
+      </p>
+    </div>
+
+    <div class="work__grid">
+      {items.map((it) => (
+        <figure class="work__item">
+          <div class="plate">
+            <img src={`images/${it.src}`} alt={it.alt} loading="lazy" />
+          </div>
+          <figcaption class="work__cap">
+            <b>{it.cap}</b>
+            <span>{it.sub}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <p class="work__note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="8.4" />
+        <path d="M8.2 12.2l2.7 2.7 5-5.3" />
+      </svg>
+      Every job is photographed and finished clean — see what you get for the money you're quoted.
+    </p>
+  </div>
+</section>

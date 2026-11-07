@@ -1,0 +1,47 @@
+---
+/**
+ * Service areas — heading and lead are verbatim from the live locations
+ * strip; the twelve suburbs listed are the ones the homepage shows.
+ * The full suburb list lives on locations/index.html (untouched).
+ */
+const suburbs = [
+  'Burleigh Heads', 'Palm Beach', 'Robina', 'Yatala', 'Broadbeach',
+  'Mermaid Waters', 'Currumbin', 'Coolangatta', 'Nerang', 'Coomera',
+  'Helensvale', 'Surfers Paradise',
+];
+---
+
+<section class="section" id="locations">
+  <div class="container areas__grid">
+    <div class="areas__side">
+      <span class="label">Locations</span>
+      <h2 class="display">Serving Coolangatta <span class="hl">to Yatala</span></h2>
+      <p class="lead" style="margin-top: var(--space-4);">
+        From the southern beaches to the northern suburbs, Moral Service operates across
+        the entire Gold Coast region.
+      </p>
+
+      <ul class="chips">
+        {suburbs.map((s) => (
+          <li>{s}</li>
+        ))}
+      </ul>
+
+      <p class="areas__more">
+        <a class="arrowlink" href="locations/index.html">See all Gold Coast suburbs <span aria-hidden="true">→</span></a>
+      </p>
+    </div>
+
+    <figure class="plate areas__img">
+      <img
+        src="images/locations-v2-800.jpg"
+        width="800" height="533"
+        loading="lazy"
+        alt="Aerial view of the Gold Coast coastline from Burleigh Heads north to Surfers Paradise, the area Moral Service covers" />
+      <figcaption class="plate__cap">
+        <span>Coolangatta &rarr; Yatala</span>
+        <small>Emergencies 24/7 &middot; 1300&nbsp;522&nbsp;107</small>
+      </figcaption>
+    </figure>
+  </div>
+</section>

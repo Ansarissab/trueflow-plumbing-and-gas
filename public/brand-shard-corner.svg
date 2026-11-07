@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Shard cluster, CORNER ANCHORED.
+
+  Placed twice per section (left top and right bottom) at a width-based size, so
+  the art is pinned to the corners and survives ANY section height. The previous
+  full-bleed version used background-size:cover, which crops to the vertical
+  middle of the artboard - and the middle was deliberately empty, so short
+  sections rendered nothing at all.
+
+  Same orientation both times rather than mirrored: a consistent slash direction
+  across the page reads more deliberate than a symmetrical one.
+
+  Every edge runs at the logo's own bar angle (the accent bar above the M shifts
+  12.89 across 16.36, so dx = 0.788 * dy).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="420" viewBox="0 0 460 420">
+  <g fill="#fff">
+    <polygon opacity="0.055" points="-80,0 60,0 271,268 131,268"/>
+    <polygon opacity="0.038" points="80,0 170,0 381,268 291,268"/>
+    <polygon opacity="0.070" points="-40,0 10,0 200,241 150,241"/>
+    <polygon opacity="0.030" points="190,0 240,0 345,133 295,133"/>
+  </g>
+</svg>

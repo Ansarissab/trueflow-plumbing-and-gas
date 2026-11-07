@@ -1,0 +1,85 @@
+---
+/**
+ * Process — "Simple from start to finish." — the site's own four steps,
+ * verbatim, plus the 2-hour arrival window / SMS note. Rate-card facts sit in
+ * the pricing section next door.
+ */
+const steps = [
+  {
+    t: 'Tell us the job',
+    d: 'Call <a href="tel:1300522107">1300 522 107</a> or send the form. A few photos help us price it faster.',
+  },
+  {
+    t: 'We price it',
+    d: 'Straightforward jobs get a free fixed price over the phone.',
+  },
+  {
+    t: 'You approve, we fix it',
+    d: 'Nothing starts until you\u2019ve said yes to the price.',
+  },
+  {
+    t: 'Cleaned up and guaranteed',
+    d: 'We tidy up after ourselves and stand behind the work.',
+  },
+];
+---
+
+<section class="rates section" id="process">
+  <div class="container proc__grid">
+    <div>
+      <div class="shead">
+        <span class="label">Our Process</span>
+        <h2 class="display">Simple from <span class="hl">start to finish.</span></h2>
+      </div>
+
+      <ol class="steps">
+        {steps.map((s, i) => (
+          <li class="step">
+            <span class="step__num" aria-hidden="true">{i + 1}</span>
+            <div>
+              <h3 class="step__t">{s.t}</h3>
+              <p class="step__d" set:html={s.d} />
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <aside class="proc__side">
+      <div class="ratecard">
+        <p class="ratecard__top">
+          <span>What it costs</span>
+          <small>The rate card</small>
+        </p>
+        <dl>
+          <div class="rate-row">
+            <dt>Free fixed quote</dt>
+            <dd class="rate-fee">$0</dd>
+            <dd>Priced from your call or photos — the quote costs you nothing.</dd>
+          </div>
+          <div class="rate-row">
+            <dt>Diagnosis visit</dt>
+            <dd class="rate-fee">$88</dd>
+            <dd>Inc GST, covers the first 30 minutes on site. <strong>Credited off your invoice if you go ahead within 14 days.</strong></dd>
+          </div>
+          <div class="rate-row">
+            <dt>Beyond 30 minutes</dt>
+            <dd class="rate-fee">$165/hr</dd>
+            <dd>Inc GST, charged in 15-minute blocks. We tell you before we run past the first 30 minutes.</dd>
+          </div>
+        </dl>
+        <div class="ratecard__foot">
+          <p class="fine">No work starts without your yes. Prices inc GST.</p>
+          <a class="btn btn--sun" href="#quote">Get my quote</a>
+        </div>
+      </div>
+      <p class="work__note" style="margin-top: var(--space-5);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v5l3 2" />
+        </svg>
+        You'll get a 2-hour arrival window when you book, and an SMS confirmation before we head over.
+      </p>
+    </aside>
+  </div>
+</section>

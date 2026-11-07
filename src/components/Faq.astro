@@ -1,0 +1,48 @@
+---
+/**
+ * FAQ — questions and answers passed in by the page (single source of truth,
+ * also used for FAQPage JSON-LD). Wording is verbatim from the site homepage.
+ */
+interface FaqItem {
+  q: string;
+  a: string[];
+}
+interface Props {
+  faqs: FaqItem[];
+  side?: boolean;
+}
+const { faqs, side = true } = Astro.props;
+---
+
+<section class="section" id="faq">
+  <div class="container faq__wrap">
+    {side && (
+      <div class="faq__side">
+        <span class="label">FAQ</span>
+        <h2 class="display">Our commonly asked <span class="hl">questions</span></h2>
+        <p class="lead" style="margin-top: var(--space-4);">
+          Got another question?
+          <a href="#quote"><strong>Request a quote</strong></a> and we'll be in touch the same business day.
+        </p>
+      </div>
+    )}
+
+    <div class="faq__items">
+      {faqs.map((f) => (
+        <details class="faq__item">
+          <summary>
+            {f.q}
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="faq__a">
+            {f.a.map((p) => (
+              <p set:html={p} />
+            ))}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

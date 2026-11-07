@@ -1,0 +1,47 @@
+---
+/**
+ * Why — "What Moral stands for": the brand's own MORAL acronym, verbatim
+ * (Make it right / Open & upfront / Respect your home / Accountable /
+ * Local & loyal), on the deep navy band.
+ */
+const values = [
+  { l: 'M', t: 'Make it right', d: 'We fix the real cause and do it properly, sorted the first time.' },
+  { l: 'O', t: 'Open & upfront', d: 'Honest advice and a fixed price before any repair starts. No surprises.' },
+  { l: 'R', t: 'Respect your home', d: 'We work clean and treat your place like it\u2019s our own.' },
+  { l: 'A', t: 'Accountable', d: 'We stand behind every job. If it\u2019s not right, we make it right.' },
+  { l: 'L', t: 'Local & loyal', d: 'A Gold Coast name that\u2019s here for the long run.' },
+];
+---
+
+<section class="why section" id="why">
+  <div class="container">
+    <div class="why__grid">
+      <div>
+        <h2 class="display">What <span class="hl">Moral</span> stands for</h2>
+        <ul class="why__list">
+          {values.map((v) => (
+            <li class="why__item">
+              <span class="why__num" aria-hidden="true">{v.l}</span>
+              <div>
+                <h3 class="why__t">{v.t}</h3>
+                <p class="why__d">{v.d}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <figure class="plate why__media">
+        <img
+          src="images/stands-for-home.jpg"
+          width="1024" height="1024"
+          loading="lazy"
+          alt="Moral Service talking a Gold Coast homeowner through the job at their kitchen table" />
+        <figcaption class="plate__cap">
+          <span>Talked through, not upsold</span>
+          <small>M O R A L</small>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>

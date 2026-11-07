@@ -1,0 +1,113 @@
+---
+/**
+ * Footer — mirrors the live footer's structure and facts (ledger columns,
+ * hours, licences, ABN, Privacy Policy, and the KINGTRADIE credit kept as-is).
+ * The live email links are Cloudflare-obfuscated; here it's a plain mailto.
+ * Trade links point at the real anchors on each trade page.
+ */
+const plumbing = [
+  ['Blocked Drains', 'plumber-gold-coast/index.html#blocked-drains'],
+  ['Hot Water Systems', 'plumber-gold-coast/index.html#hot-water'],
+  ['Leak Detection', 'plumber-gold-coast/index.html#leak-detection'],
+  ['CCTV Inspections', 'plumber-gold-coast/index.html#cctv-drain-inspections'],
+  ['New Home Plumbing', 'plumber-gold-coast/index.html#new-home-plumbing'],
+];
+const electrical = [
+  ['Switchboards', 'electrician-gold-coast/index.html#switchboard-upgrades'],
+  ['Lights & Power', 'electrician-gold-coast/index.html#lights-fans-power-points'],
+  ['Aircon', 'electrician-gold-coast/index.html#aircon'],
+  ['New Home Electrical', 'electrician-gold-coast/index.html#new-home-electrical'],
+  ['Fault Finding', 'electrician-gold-coast/index.html#fault-finding'],
+];
+const company = [
+  ['About', 'about/index.html'],
+  ['Plumbing', 'plumber-gold-coast/index.html'],
+  ['Electrical', 'electrician-gold-coast/index.html'],
+  ['Locations', 'locations/index.html'],
+  ['Moral Support', 'moral-support/index.html'],
+  ['Contact', 'contact/index.html'],
+  ['Warranty', 'Moral%20Service%20Warranty.pdf'],
+];
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img src="moral-logo-white.svg" alt="Moral Service" width="190" height="50" loading="lazy" />
+      <p>Two brothers, one reliable standard. Licensed plumbing and electrical for homes &amp; businesses across the Gold Coast.</p>
+      <div class="footer__socials">
+        <a href="https://www.instagram.com/moral_lads/" target="_blank" rel="noopener" aria-label="Moral Service plumbing on Instagram, @moral_lads">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/moralelectrical/" target="_blank" rel="noopener" aria-label="Moral Service electrical on Instagram, @moralelectrical">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="footer__col" aria-label="Plumbing services">
+      <h4>Plumbing</h4>
+      <ul>
+        {plumbing.map(([label, href]) => (
+          <li><a href={href}>{label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav class="footer__col" aria-label="Electrical services">
+      <h4>Electrical</h4>
+      <ul>
+        {electrical.map(([label, href]) => (
+          <li><a href={href}>{label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="footer__col">
+      <h4>Company</h4>
+      <ul>
+        {company.map(([label, href]) => (
+          <li><a href={href}>{label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer__col footer__contact">
+      <h4>Contact</h4>
+      <ul>
+        <li><a class="footer__email" href="mailto:contact@moralservice.com.au">contact@moralservice.com.au</a></li>
+        <li>Mon–Fri, 7am–5pm</li>
+        <li>24/7 emergency service: <a href="tel:1300522107">1300 522 107</a></li>
+        <li>Gold Coast wide</li>
+      </ul>
+      <p class="footer__lic">
+        <span>Plumbing Lic #15290166</span>
+        <span>Electrical Lic #89994</span>
+        <span>NSW Lic #455163C</span>
+        <span>ABN 54 629 372 023</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="footer__base">
+    <div class="container footer__base-inner">
+      <span>© 2026 Moral Service. All rights reserved.</span>
+      <nav aria-label="Legal">
+        <a href="privacy-policy/index.html">Privacy Policy</a>
+      </nav>
+      <span class="footer__credit">
+        <a href="https://kingtradie.com/websites-for-tradies/" target="_blank" rel="noopener">Website</a> and
+        <a href="https://kingtradie.com/" target="_blank" rel="noopener">marketing</a> by
+        <span class="footer__kt">KINGTRADIE</span>
+      </span>
+    </div>
+  </div>
+</footer>

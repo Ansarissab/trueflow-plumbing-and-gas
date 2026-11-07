@@ -1,0 +1,58 @@
+---
+/**
+ * Reviews — four verbatim Google reviews (wording unchanged from the site's
+ * own homepage), with the verified 4.9 average from 149 Google reviews.
+ */
+const reviews = [
+  {
+    name: 'Maree Le Fevre',
+    q: "I can't recommend Moral Service highly enough. As an aged pensioner I was worried about the cost and stress of getting my drainage issue fixed, but the team went above and beyond to take care of me.",
+  },
+  {
+    name: 'Nick Dufficy',
+    q: "Always a smooth and easy process dealing with this company, with all jobs completed promptly at a fair price with good workmanship. I'd recommend these guys with no hesitation.",
+  },
+  {
+    name: 'Sarah Naim',
+    q: 'Had an amazing experience with Shaun. Two jobs across two weeks, and both visits he arrived exactly on time, completed the job perfectly and quickly, and provided exceptional customer service. 10/10.',
+  },
+  {
+    name: 'Gerry Brennan',
+    q: 'Justin installed new smoke alarms in all bedrooms with no mess. Courteous and knowledgeable, and provided certification the same day.',
+  },
+];
+---
+
+<section class="reviews section" id="reviews">
+  <div class="container">
+    <div class="reviews__head">
+      <div class="shead" style="margin-bottom: 0;">
+        <span class="label">Our reviews</span>
+        <h2 class="display">Feedback from Gold Coast <span class="hl">locals.</span></h2>
+        <p class="lead">Straight from our Google business profile.</p>
+      </div>
+
+      <span class="reviews__gattr">
+        <img src="images/google-g.svg" alt="Google" width="18" height="18" />
+        <span><strong>4.9</strong> from 149 Google reviews</span>
+      </span>
+    </div>
+
+    <div class="revs">
+      {reviews.map((r) => (
+        <figure class="rev">
+          <div class="rev__stars" role="img" aria-label="5 out of 5 stars">
+            {Array.from({ length: 5 }).map(() => (
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7L12 2Z" /></svg>
+            ))}
+          </div>
+          <blockquote class="rev__q">{r.q}</blockquote>
+          <figcaption class="rev__by">
+            <span class="rev__name">{r.name}</span>
+            <img class="rev__g" src="images/google-g.svg" alt="Google review" width="17" height="17" />
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

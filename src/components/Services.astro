@@ -1,0 +1,148 @@
+---
+/**
+ * Services — two trade plates ("The Rate Card" split), verbatim service
+ * descriptions from the existing site. "View more" jumps into each trade page
+ * anchor; the CTA preselects the trade in the quote form (scripted in
+ * src/scripts/quote-form.ts, same behaviour as the live homepage).
+ */
+const plumbing = [
+  {
+    n: 'Blocked Drains & Toilets',
+    d: 'We locate the blockage and clear it. If it keeps coming back, we find out why and fix that too.',
+    a: 'plumber-gold-coast/index.html#blocked-drains',
+  },
+  {
+    n: 'Hot Water Systems',
+    d: 'Gas, electric, solar, or heat pump. We supply, install, and service them. If yours is running cold or leaking, we\u2019ll tell you honestly whether it needs a repair or a replacement.',
+    a: 'plumber-gold-coast/index.html#hot-water',
+  },
+  {
+    n: 'Leak Detection & Repairs',
+    d: 'Some leaks are obvious. Others hide inside walls or under slabs. We use listening equipment and pressure testing to find them without unnecessary damage to your home.',
+    a: 'plumber-gold-coast/index.html#leak-detection',
+  },
+  {
+    n: 'CCTV Drain Inspections',
+    d: 'We put a camera down the line and show you what\u2019s there. You can see the footage yourself. No guesswork, no unnecessary digging.',
+    a: 'plumber-gold-coast/index.html#cctv-drain-inspections',
+  },
+  {
+    n: 'New Home Plumbing',
+    d: 'Full plumbing rough-in and fit-off for new builds and renovations, done to code and built to last.',
+    a: 'plumber-gold-coast/index.html#new-home-plumbing',
+  },
+  {
+    n: 'General Maintenance',
+    d: 'Taps, toilets, water pressure, hot water, fixtures. Anything that needs attention around the home.',
+    a: 'plumber-gold-coast/index.html#general-maintenance',
+  },
+];
+
+const electrical = [
+  {
+    n: 'Switchboard Upgrades & Repairs',
+    d: 'If your board keeps tripping, or you still have ceramic fuses, we assess it and tell you what it needs. We carry out upgrades to current Australian standards.',
+    a: 'electrician-gold-coast/index.html#switchboard-upgrades',
+  },
+  {
+    n: 'Lights, Fans & Power Points',
+    d: 'New installations or replacements, done properly and to code.',
+    a: 'electrician-gold-coast/index.html#lights-fans-power-points',
+  },
+  {
+    n: 'Aircon Install & Servicing',
+    d: 'We install and service split systems. Fully licensed electrical work, no subcontracting.',
+    a: 'electrician-gold-coast/index.html#aircon',
+  },
+  {
+    n: 'New Home Electrical',
+    d: 'Complete electrical fit-out for new builds. We work alongside your building team from rough-in to final fix.',
+    a: 'electrician-gold-coast/index.html#new-home-electrical',
+  },
+  {
+    n: 'Fault Finding & Repairs',
+    d: 'If something has stopped working and you can\u2019t find why, we trace the fault and fix it at the source.',
+    a: 'electrician-gold-coast/index.html#fault-finding',
+  },
+  {
+    n: 'Safety & Compliance Checks',
+    d: 'A full electrical safety inspection, with a written report of what we found. Useful if you\u2019re buying, selling, or renting out a property.',
+    a: 'electrician-gold-coast/index.html#safety-compliance',
+  },
+];
+---
+
+<section class="section" id="services">
+  <div class="container">
+    <div class="shead">
+      <span class="label">Our Services</span>
+      <h2 class="display">Plumbing &amp; <span class="hl">Electrical</span></h2>
+      <p class="lead">Providing reliable plumbing &amp; electrical services across the Gold Coast.</p>
+    </div>
+
+    <div class="svc-split">
+      <article class="svc-col svc-col--plumb">
+        <h3 class="svc-col__head">
+          <span>Plumbing</span>
+          <em>Shaun's trade</em>
+        </h3>
+        <div class="svc-col__media">
+          <img src="images/services/card-plumbing.jpg" alt="Moral Service plumber connecting a gas bottle at a Gold Coast home" width="1200" height="800" loading="lazy" />
+          <span class="svc-col__cap">Owned by Shaun</span>
+        </div>
+
+        <ul class="svc-list">
+          {plumbing.map((s) => (
+            <li>
+              <a class="svc-row" href={s.a}>
+                <strong>{s.n}</strong>
+                <span class="ar" aria-hidden="true">→</span>
+                <span>{s.d}</span>
+              </a>
+            </li>
+          ))}
+          <li class="svc-list__foot">
+            <a class="arrowlink" href="#quote" data-preselect-service="Plumbing">Request a plumbing quote <span aria-hidden="true">→</span></a>
+            <span class="svc-247">Blocked sewer or burst pipe? <a href="tel:1300522107">1300&nbsp;522&nbsp;107</a>, 24/7.</span>
+          </li>
+        </ul>
+      </article>
+
+      <article class="svc-col svc-col--elec">
+        <h3 class="svc-col__head">
+          <span>Electrical</span>
+          <em>Justin's trade</em>
+        </h3>
+        <div class="svc-col__media">
+          <img src="images/services/card-electrical.jpg" alt="Moral Service electrician working on a switchboard on the Gold Coast" width="1200" height="800" loading="lazy" />
+          <span class="svc-col__cap">Owned by Justin</span>
+        </div>
+
+        <ul class="svc-list">
+          {electrical.map((s) => (
+            <li>
+              <a class="svc-row" href={s.a}>
+                <strong>{s.n}</strong>
+                <span class="ar" aria-hidden="true">→</span>
+                <span>{s.d}</span>
+              </a>
+            </li>
+          ))}
+          <li class="svc-list__foot">
+            <a class="arrowlink" href="#quote" data-preselect-service="Electrical">Request an electrical quote <span aria-hidden="true">→</span></a>
+            <span class="svc-247">No power at the switchboard? <a href="tel:1300522107">1300&nbsp;522&nbsp;107</a>, 24/7.</span>
+          </li>
+        </ul>
+      </article>
+    </div>
+
+    <p class="svc-also">
+      <b>Also</b>
+      <span class="svc-tag">New builds &amp; renovations</span>
+      <span class="svc-tag">Commercial, strata &amp; builder work</span>
+      <span class="svc-tag">Written safety reports</span>
+      <span class="svc-tag">Same-day service</span>
+      <span class="svc-tag">Everywhere from Coolangatta to Yatala</span>
+    </p>
+  </div>
+</section>

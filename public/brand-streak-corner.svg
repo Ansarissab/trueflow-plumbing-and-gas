@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Streak cluster, CORNER ANCHORED. Sharper sibling of the shard cluster.
+
+  Placed twice per section (left top and right bottom) at a width-based size, so
+  it is pinned to the corners and survives any section height. Tapering slashes
+  fan from the corner and thin out into the field.
+
+  Angles follow the logo's own bar slope (dx = 0.788 * dy).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="520" viewBox="0 0 460 520">
+  <g fill="#fff">
+    <polygon opacity="0.085" points="-30,-20 0,-30 240,430 205,455"/>
+    <polygon opacity="0.055" points="-50,30 -38,18 150,500 128,518"/>
+    <polygon opacity="0.100" points="-20,5 -8,-2 110,270 95,282"/>
+    <polygon opacity="0.045" points="-60,110 -50,100 85,515 68,527"/>
+    <polygon opacity="0.035" points="60,-25 68,-30 250,340 239,350"/>
+  </g>
+</svg>

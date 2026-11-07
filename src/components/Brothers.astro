@@ -1,0 +1,87 @@
+---
+/**
+ * Brothers — the owners. Copy is the existing site's own words about Shaun
+ * (Owner & Plumber) and Justin (Owner & Electrician); timeline photos are the
+ * real "then / now" shots from the About page.
+ */
+const points = ['Owners on the tools', 'Expert solutions, no patch-work', 'Passionate about their work'];
+---
+
+<section class="section" id="about">
+  <div class="container bros__inner">
+    <figure>
+      <div class="plate bros__photo">
+        <img
+          src="images/brothers-goldcoast.jpg"
+          width="1220" height="998"
+          loading="lazy"
+          alt="Shaun and Justin, the two brothers behind Moral Service, on the beach at Surfers Paradise" />
+      </div>
+
+      <div class="bros__minirow">
+        <figure class="bros__mini">
+          <img src="images/story-then.jpg" width="662" height="405" loading="lazy" alt="The original Moral Plumbing bus wrap from Shaun&#8217;s one-man plumbing days" />
+          <span class="year">2019</span>
+          <figcaption>How it started: Shaun's one-man plumbing gig, one ute and a strong, honest work ethic.</figcaption>
+        </figure>
+        <figure class="bros__mini">
+          <img src="images/story-now.jpg" width="662" height="405" loading="lazy" alt="Shaun and Justin today, standing with the Moral Service ute on the Gold Coast" />
+          <span class="year">Today</span>
+          <figcaption>Moral Service: plumbing and electrical under one family name.</figcaption>
+        </figure>
+      </div>
+    </figure>
+
+    <div class="bros__story">
+      <span class="label">The owners</span>
+      <h2 class="display" style="margin-top: 1rem;">The brothers behind <span class="hl">Moral&nbsp;Service.</span></h2>
+      <p class="lead bros__exp">Over 10 years' experience across plumbing and electrical.</p>
+
+      <div class="bros__body">
+        <p>
+          Moral Service is owned and run by two brothers. <strong>Shaun is the plumber.</strong>
+          <strong>Justin is the electrician.</strong> When you book a job, one of them turns up.
+          There is no franchise, no call centre, and no junior tradesperson sent in their place.
+        </p>
+        <p>
+          Moral Service started back in 2019 as Moral Plumbing, founded by Shaun. As the work grew,
+          Justin joined him and they formed Moral Service — both trades with the same name on the ute.
+        </p>
+      </div>
+
+      <ul class="hero__urgent bros__points">
+        {points.map((p) => (
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="8.4" />
+              <path d="M8.2 12.2l2.7 2.7 5-5.3" />
+            </svg>
+            {p}
+          </li>
+        ))}
+      </ul>
+
+      <div class="owners">
+        <figure class="owner owner--plumb">
+          <img src="images/owner-shaun.jpg" width="571" height="463" loading="lazy" alt="Shaun, owner and plumber at Moral Service" />
+          <figcaption><span><b>Shaun</b> · Owner &amp; Plumber</span></figcaption>
+          <figcaption class="owner__body">
+            "Every Moral plumbing job is Shaun's. He takes real pride in plumbing done properly… he won't leave until he can stand back and say, 'That's done right.'"
+          </figcaption>
+        </figure>
+        <figure class="owner owner--elec">
+          <img src="images/owner-justin.jpg" width="571" height="463" loading="lazy" alt="Justin, owner and electrician at Moral Service" />
+          <figcaption><span><b>Justin</b> · Owner &amp; Electrician</span></figcaption>
+          <figcaption class="owner__body">
+            "The electrical side is Justin's alone, and more than ten years in the game shows in the small things: a clean worksite, safety put first, and a finish he's proud to hand over."
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="bros__linkrow">
+        <a class="arrowlink" href="about/index.html">Read the full story <span aria-hidden="true">→</span></a>
+        <a class="arrowlink" href="contact/index.html">Contact us <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
