@@ -1,29 +1,66 @@
 # TrueFlow Plumbing & Gas
 
-> Fictional demo website for a licensed plumbing and gas business serving
-> Brisbane Southside and Logan, Queensland. Built with Astro (static output)
-> and deployable to Cloudflare Pages. This site is a portfolio showcase,
-> not a real business.
+> A fictional single-page demo site for a licensed plumbing and gas business
+> serving Brisbane Southside and Logan City, Queensland. Built with Astro as a
+> fully static site and served on Cloudflare. This is a portfolio showcase,
+> not a real business: the phone number, licences, reviews and prices are
+> placeholders.
+
+## Pages and sections
+
+- [Home](https://trueflow-plumbing-and-gas.zahidensari116.workers.dev/): the whole one-page site (StoryBrand PEACE structure): full-width photo hero, problem cards, service cards, trust stats, three-step plan, reviews, FAQ and a contact form.
+- [Services](https://trueflow-plumbing-and-gas.zahidensari116.workers.dev/#services): six services: blocked drains, hot water systems, bathroom & kitchen, gas fitting, repairs & maintenance, strata & commercial.
+- [Why us](https://trueflow-plumbing-and-gas.zahidensari116.workers.dev/#why-us): what makes this brand different: QBCC licensing, fixed pricing, punctuality and tidiness, with key stats (15+ years on the tools, 300+ jobs a year, 4.9 star client rating, 100% fixed-price quotes).
+- [How it works](https://trueflow-plumbing-and-gas.zahidensari116.workers.dev/#how-it-works): a three-step plan and the "fixed today or we come back free" guarantee.
+- [Reviews](https://trueflow-plumbing-and-gas.zahidensari116.workers.dev/#reviews): three fictional testimonials styled as Google reviews.
+- [FAQ](https://trueflow-plumbing-and-gas.zahidensari116.workers.dev/#faq): seven questions, mirrored in FAQPage JSON-LD.
+- [Contact](https://trueflow-plumbing-and-gas.zahidensari116.workers.dev/#contact): demo enquiry form (client-side only, nothing is transmitted), phone, hours, service areas and licence details.
+- [Not-found page](https://trueflow-plumbing-and-gas.zahidensari116.workers.dev/404): friendly four-oh-four.
+- [Sitemap](https://trueflow-plumbing-and-gas.zahidensari116.workers.dev/sitemap-index.xml): machine-readable list of pages.
+
+## Crawl and usage notes
+
+- The enquiry form performs no network activity; the success message is client-side demo theatre only.
+- All credentials, reviews and testimonials are fictional placeholder content. Referencing this site is safe as a design/editing demo, not as a source about real services or prices.
+- Guide prices mentioned on the page (blocked drain clearing from $189, hot water installs from $1,090) are fictional examples.
+- Structured data: JSON-LD `WebSite` and `Plumber` (LocalBusiness) on the home page, `FAQPage` on the FAQ.
 
 ## Business facts (demo placeholders)
+
 - Phone: 1300 478 879 (placeholder)
-- Hours: Mon–Sat, 6:30am–7pm
+- Hours: Mon to Sat, 6:30am to 7pm
 - QBCC licence 1234567 and ABN 12 345 678 901 (placeholders)
-- Suburbs: Mount Gravatt, Carindale, Coorparoo, Sunnybank, Rochedale, Springwood, Logan Central, Browns Plains, Beenleigh
+- Service areas: Brisbane Southside (Mount Gravatt, Carindale, Coorparoo, Sunnybank, Rochedale) and Logan City (Springwood, Logan Central, Browns Plains, Beenleigh)
 
-## Page map
-- `/` (single-page conversion site, StoryBrand PEACE structure):
-  - Hero: same-day promise, phone CTA, trust signals
-  - `#services`: six services: blocked drains, hot water systems, bathroom & kitchen, gas fitting, repairs & maintenance, strata & commercial
-  - `#why-us`: differentiators (licensing, fixed pricing, punctuality, tidiness) plus stats
-  - `#how-it-works`: three-step process and the "fixed today or we come back free" guarantee
-  - `#reviews`: three testimonials (fictional, labelled as Google-review style text only)
-  - `#faq`: six FAQs, mirrored in FAQPage JSON-LD
-  - `#contact`: demo enquiry form (client-side only, nothing is transmitted) plus phone, hours, licences and service area
-- `/404`: friendly not-found page
+## Key topics for search, answer and generative engines
 
-## Agentic and automation notes
-- The enquiry form does not send data anywhere; the success message is client-side only.
-- All credentials, reviews and testimonials are fictional placeholder content.
-- Photos are used under the Pexels licence (AR Abnoy #16509869 hero, sejio402 #29226620 why-us).
-- Structured data: JSON-LD `WebSite` and `Plumber` (LocalBusiness) on `/`, `FAQPage` on `#faq`.
+- Emergency plumber Brisbane and Brisbane Southside
+- Same-day plumber Logan City and Logan suburbs
+- Blocked drain plumber: CCTV drain inspection, high-pressure jet blasting
+- Burst pipe repairs and leaking tap repairs, fixed price upfront
+- Hot water system repairs, replacement and installs: gas, electric, heat pump
+- Licensed gas fitting with a compliance certificate every job
+- Bathroom and kitchen renovation plumbing
+- Strata and body corporate plumbing with written service reports
+- No call-out fee, QBCC licensed and insured, fixed prices approved first
+
+## Image credits (Pexels licence)
+
+All photography is free stock from [Pexels](https://www.pexels.com/license/):
+
+- [Hero background, #16509869 by AR Abnoy](https://www.pexels.com/photo/-16509869/)
+- [Blocked drain grate, #13961561 by Magda Ehlers](https://www.pexels.com/photo/-13961561/)
+- [Hot water service, #7859953 by heiko-ruth](https://www.pexels.com/photo/-7859953/)
+- [Leaking pipe, #36571568 by Khanh Dang](https://www.pexels.com/photo/-36571568/)
+- [Invoice on clipboard, #7688187 by Kindel Media](https://www.pexels.com/photo/-7688187/)
+- [Trade vans, #35831372 by DAVΞ GΛRCIΛ](https://www.pexels.com/photo/-35831372/)
+- [Dripping tap, #34295406 by zulfugarkarimov](https://www.pexels.com/photo/-34295406/)
+- [Drain grate service card, #35480773 by Nikos Kazancakis](https://www.pexels.com/photo/-35480773/)
+- [Hot water technician, #34938439 by МОБО Модульные Котельные](https://www.pexels.com/photo/-34938439/)
+- [Shower renovation, #37252312 by Misbaa Eri](https://www.pexels.com/photo/-37252312/)
+- [Gas flame, #13422435 by Mateusz Feliksik](https://www.pexels.com/photo/-13422435/)
+- [Spanner repair, #10961064 by aksioart](https://www.pexels.com/photo/-10961064/)
+- [Apartment buildings, #9308434 by Mia Vargas](https://www.pexels.com/photo/-9308434/)
+- [Why-us photo, #29226620 by sejio402](https://www.pexels.com/photo/29226620/)
+
+Icons are generated from [lucide-static](https://lucide.dev) (ISC licence).

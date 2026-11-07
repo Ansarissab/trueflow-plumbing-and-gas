@@ -8,6 +8,7 @@ const assurances = [
   'Fixed-price quote before we start',
   'No call-out fee. Ever.',
   'Same-day service for most jobs',
+  'Fixed today, or we come back free',
 ];
 
 const trustItems = [
@@ -19,7 +20,20 @@ const trustItems = [
 ---
 
 <section class="hero" aria-labelledby="hero-heading">
-  <div class="container">
+  <div class="hero-bg" aria-hidden="true">
+    <img
+      src="/images/hero-bg.jpg"
+      alt=""
+      width="1920"
+      height="1080"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+
+  <div class="container hero-inner">
     <div class="hero-copy">
       <p class="eyebrow">Brisbane Southside &amp; Logan plumbers</p>
       <h1 id="hero-heading">
@@ -46,38 +60,6 @@ const trustItems = [
           </li>
         ))}
       </ul>
-    </div>
-
-    <div class="hero-media">
-      <div class="hero-media__portrait">
-        <img
-          src="/images/hero-plumber.jpg"
-          alt="Licensed TrueFlow plumber tightening a tap fitting under a kitchen sink"
-          width="1200"
-          height="1380"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        />
-      </div>
-      <div class="float-card float-card--reviews">
-        <span class="stars stars--filled" aria-hidden="true">
-          <Icon name="star" /><Icon name="star" /><Icon name="star" /><Icon name="star" /><Icon name="star" />
-        </span>
-        <div>
-          <strong>4.9★ from 300+ reviews</strong>
-          <small>Google reviews · demo data</small>
-        </div>
-      </div>
-      <div class="float-card float-card--guarantee">
-        <span class="badge-icon badge-icon--amber">
-          <Icon name="badge" aria-hidden="true" />
-        </span>
-        <div>
-          <strong>Fixed today, or we come back free</strong>
-          <small>The TrueFlow guarantee</small>
-        </div>
-      </div>
     </div>
   </div>
 

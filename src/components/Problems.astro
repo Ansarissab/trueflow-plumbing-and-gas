@@ -3,32 +3,44 @@ import Icon from './Icon.astro';
 
 const problems = [
   {
-    icon: 'droplets' as const,
+    icon: 'droplet' as const,
+    image: '/images/problem-1.jpg',
+    alt: 'Street drain grate with rust and moss, water unable to get away',
     title: 'Blocked & slow drains',
     text: "The kitchen sink gurgles, the shower fills to your ankles and someone’s mopping again.",
   },
   {
     icon: 'hot' as const,
+    image: '/images/problem-2.jpg',
+    alt: 'Plumber servicing a hot water system with hands on the pump',
     title: 'Hot water, gone',
     text: "‘A couple of days’ is the only answer anyone will give you, and everyone in the street seems to have had a cold start this week.",
   },
   {
     icon: 'wrench' as const,
+    image: '/images/problem-3.jpg',
+    alt: 'Water pouring from a leaking pipe fitting',
     title: 'Burst & leaking pipes',
     text: 'Water is coming through a ceiling that was perfectly fine yesterday.',
   },
   {
     icon: 'wallet' as const,
+    image: '/images/problem-4.jpg',
+    alt: 'Finger tracking down an itemised invoice on a clipboard',
     title: 'Surprise invoices',
     text: "The ‘quick fix’ that turned into work you never approved and a bill you didn’t sign off.",
   },
   {
     icon: 'clock' as const,
+    image: '/images/problem-5.jpg',
+    alt: 'Two white trade vans parked in a carpark, nowhere near your doorstep',
     title: "Tradies who don’t show",
     text: 'The four-hour arrival window that quietly becomes all day. No call, no courtesy.',
   },
   {
     icon: 'alert' as const,
+    image: '/images/problem-6.jpg',
+    alt: 'A chrome kitchen tap slowly dripping',
     title: "The jobs you’ve put off",
     text: "That dripping tap you’ve learned to live with is quietly eating your water bill.",
   },
@@ -48,11 +60,14 @@ const problems = [
     </div>
 
     <div class="problem-grid">
-      {problems.map(({ icon, title, text }) => (
+      {problems.map(({ icon, image, alt, title, text }) => (
         <article class="problem-card">
-          <span class="problem-icon"><Icon name={icon} /></span>
-          <h3>{title}</h3>
-          <p>{text}</p>
+          <img class="card-thumb" src={image} alt={alt} width="800" height="520" loading="lazy" decoding="async" />
+          <div class="problem-body">
+            <span class="problem-icon"><Icon name={icon} /></span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </div>
         </article>
       ))}
     </div>

@@ -15,11 +15,14 @@ interface Props {
 
 const { title, description, preloadHero = false } = Astro.props;
 
-const SITE = Astro.site ?? new URL('https://trueflow-demo.pages.dev/');
+const SITE = Astro.site ?? new URL('https://trueflow-plumbing-and-gas.zahidensari116.workers.dev/');
 const canonical = new URL(Astro.url.pathname, SITE).href;
 const ogImage = new URL('/images/og.jpg', SITE).href;
 
 const suburbs = [
+  'Brisbane',
+  'Brisbane Southside',
+  'Logan City',
   'Mount Gravatt',
   'Carindale',
   'Coorparoo',
@@ -29,6 +32,17 @@ const suburbs = [
   'Logan Central',
   'Browns Plains',
   'Beenleigh',
+];
+
+const services = [
+  'blocked drains',
+  'burst pipes',
+  'leaking taps',
+  'hot water systems',
+  'gas fitting',
+  'emergency plumbing',
+  'bathroom renovation plumbing',
+  'strata & commercial plumbing',
 ];
 
 const jsonLd = {
@@ -51,6 +65,8 @@ const jsonLd = {
       image: ogImage,
       priceRange: '$$',
       inLanguage: 'en-AU',
+      serviceType: services,
+      knowsAbout: services.concat(['camera drain inspections', 'jet blasting', 'heat pump hot water', 'compliance certificates']),
       address: {
         '@type': 'PostalAddress',
         addressRegion: 'QLD',
@@ -80,6 +96,10 @@ const jsonLd = {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="emergency plumber Brisbane, blocked drain plumber, hot water system repairs, gas fitting Brisbane, same-day plumber Logan, Brisbane Southside plumbing, fixed price plumber, no call-out fee plumber, burst pipe repairs, CCTV drain inspection"
+    />
     <link rel="canonical" href={canonical} />
 
     <meta property="og:type" content="website" />
@@ -91,14 +111,14 @@ const jsonLd = {
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Licensed TrueFlow plumber tightening a tap fitting under a kitchen sink" />
+    <meta property="og:image:alt" content="TrueFlow plumber tightening pipe fittings under a kitchen sink in warm light" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    {preloadHero && <link rel="preload" as="image" href="/images/hero-plumber.jpg" fetchpriority="high" />}
+    {preloadHero && <link rel="preload" as="image" href="/images/hero-bg.jpg" fetchpriority="high" />}
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>

@@ -6,37 +6,49 @@ const tel = 'tel:+611300478879';
 
 const services = [
   {
-    icon: 'droplets' as const,
+    icon: 'droplet' as const,
+    image: '/images/service-1.jpg',
+    alt: 'Slot drain grate in a paved surface with green shoots pushing through',
     meta: 'CCTV & jet blasting',
     title: 'Blocked drains',
     text: 'Camera inspections and jet blasting that clear sinks, showers, sewers and stormwater properly, instead of pushing the blockage deeper.',
   },
   {
     icon: 'hot' as const,
+    image: '/images/service-2.jpg',
+    alt: 'Service technician working on a wall-mounted hot water system',
     meta: 'Repairs & installs',
     title: 'Hot water systems',
     text: 'Gas, electric and heat-pump repairs and installs from brands you know. Warm shower tonight, honest advice on what should be replaced.',
   },
   {
     icon: 'shower' as const,
+    image: '/images/service-3.jpg',
+    alt: 'Modern matte black shower fittings against beige stone tile',
     meta: 'Renos & fixtures',
     title: 'Bathroom & kitchen',
     text: 'Taps, mixers, vanities and full reno plumbing, finished clean enough to appear in the listing photos.',
   },
   {
     icon: 'flame' as const,
+    image: '/images/service-4.jpg',
+    alt: 'Blue flame burning steady on a gas cooktop burner',
     meta: 'Gas certificates',
     title: 'Gas fitting',
     text: 'Licensed gas work, covering cooktops, bayonets, heaters and leak checks, with a compliance certificate every single time.',
   },
   {
     icon: 'wrench' as const,
+    image: '/images/service-5.jpg',
+    alt: 'Adjustable spanner resting inside a water-spotted sink, ready for a repair',
     meta: 'Fixed prices upfront',
     title: 'Repairs & maintenance',
     text: 'Leaking taps, running toilets, burst pipes. The price is agreed with you before a single tool comes out.',
   },
   {
     icon: 'building' as const,
+    image: '/images/service-6.jpg',
+    alt: 'Apartment buildings with balconies under a blue sky',
     meta: 'Service reports',
     title: 'Strata & commercial',
     text: 'Fast, tidy call-outs for body corporates and Southside small businesses, written up in reports your committee can actually read.',
@@ -57,16 +69,19 @@ const services = [
     </div>
 
     <div class="services-grid">
-      {services.map(({ icon, meta, title, text }) => (
+      {services.map(({ icon, image, alt, meta, title, text }) => (
         <article class="card service-card">
-          <span class="service-icon"><Icon name={icon} /></span>
-          <p class="service-meta">{meta}</p>
-          <h3>{title}</h3>
-          <p>{text}</p>
-          <a class="service-link" href="#contact">
-            Request this job
-            <Icon name="arrow" aria-hidden="true" />
-          </a>
+          <img class="card-thumb" src={image} alt={alt} width="800" height="520" loading="lazy" decoding="async" />
+          <div class="service-body">
+            <span class="service-icon"><Icon name={icon} /></span>
+            <p class="service-meta">{meta}</p>
+            <h3>{title}</h3>
+            <p>{text}</p>
+            <a class="service-link" href="#contact">
+              Request this job
+              <Icon name="arrow" aria-hidden="true" />
+            </a>
+          </div>
         </article>
       ))}
     </div>
