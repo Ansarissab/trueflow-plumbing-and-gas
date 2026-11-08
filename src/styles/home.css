@@ -388,6 +388,7 @@ h3.display {
 .btn--ghost {
   background: transparent;
   color: var(--ink);
+  width: 70%;
 }
 
 /* Arrow link (text + reveal arrow) */
@@ -487,9 +488,14 @@ h3.display {
 .js-reveal [data-reveal-letter].in {
   opacity: 1;
   transform: none;
+  /* The reveal legs carry the shared --rd stagger; the hover legs (2px lift,
+     shadow bloom, gallery zoom) stay delay-free so hovers fire instantly. */
+  transition: opacity .5s var(--ease) var(--rd, 0ms), transform .5s var(--ease) var(--rd, 0ms),
+    translate .15s var(--ease), box-shadow .15s var(--ease), scale .45s var(--ease);
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .js-reveal [data-reveal],
   .js-reveal [data-reveal-letter] {
     opacity: 1;
@@ -1091,18 +1097,21 @@ body {
   }
 }
 
+/* Mobile: the marquee runs as-is (the track is wider than the viewport and
+   loops on its own); only the edge mask is dropped. */
 @media (max-width: 767px) {
   .press__viewport {
     -webkit-mask-image: none;
     mask-image: none;
   }
+}
 
-  /* Static wrap: the visible group's logos flow as a centred logo cloud.
-     The track wraps groups, the group must wrap its own items — without this
-     the 5-outlet row overflows small screens. */
+@media (prefers-reduced-motion: reduce) {
   .press__track {
-    width: auto;
     animation: none;
+    /* Static cloud — groups and items wrap so nothing is clipped while the
+       marquee stands still (this covers mobile + reduce too). */
+    width: auto;
     flex-wrap: wrap;
     justify-content: center;
     row-gap: var(--space-4);
@@ -1119,12 +1128,6 @@ body {
 
   .press__group[aria-hidden="true"] {
     display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .press__track {
-    animation: none;
   }
 
   .press__viewport {
@@ -1467,6 +1470,7 @@ body {
 }
 
 @media (max-width: 560px) {
+
   /* Letter + heading stay on ONE line on phones (row layout like desktop);
      only the gap tightens so text isn't squeezed next to the big letter. */
   .why__item {
@@ -1574,7 +1578,8 @@ body {
 
 .owners {
   display: grid;
-  grid-template-columns: 1fr; /* one owner card per row on mobile */
+  grid-template-columns: 1fr;
+  /* one owner card per row on mobile */
   gap: var(--space-4);
   margin-top: var(--space-6);
 }
@@ -2578,7 +2583,7 @@ body {
   color: var(--royal);
 }
 
-.formcard.is-sent > :not(.qf-success) {
+.formcard.is-sent> :not(.qf-success) {
   display: none;
 }
 

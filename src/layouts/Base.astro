@@ -101,10 +101,13 @@ const { title, description, schema } = Astro.props;
     <a class="skip" href="#main">Skip to content</a>
     <slot />
 
-    <!-- Reveal-on-scroll + sticky-bar arming (reduced-motion aware).
-         Hidden states are gated behind a JS-added `js-reveal` class on <html> —
-         content stays fully visible with JS off. The script also strips each
-         element's stagger delay once its reveal completes. -->
+    <!-- Reveal-on-scroll, two-way (reverse-bias) + sticky-bar arming, all
+         reduced-motion aware. Hidden states are gated behind a JS-added
+         `js-reveal` class on <html> — content stays fully visible with JS
+         off. Reveals also animate OUT when their element leaves the
+         viewport, then replay on every re-entry; stagger delays ride the
+         --rd custom property and persist (they only delay the listed
+         opacity/transform legs, so hovers stay instant). -->
     <script is:inline>
       (function () {
         var html = document.documentElement;
@@ -128,17 +131,11 @@ const { title, description, schema } = Astro.props;
           kids.forEach(function (el, i) { el.style.setProperty('--rd', (i * 80) + 'ms'); });
         });
 
+        // Two-way reveal: entering the viewport rises in (with its group
+        // stagger), leaving resets it so the next entry replays the reveal.
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
-            if (!e.isIntersecting) return;
-            var el = e.target;
-            io.unobserve(el);
-            el.classList.add('in');
-            el.addEventListener('transitionend', function done(ev) {
-              if (ev.target !== el || (ev.propertyName !== 'transform' && ev.propertyName !== 'opacity')) return;
-              el.style.removeProperty('--rd');
-              el.removeEventListener('transitionend', done);
-            });
+            e.target.classList.toggle('in', e.isIntersecting);
           });
         }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
         els.forEach(function (el) { io.observe(el); });
