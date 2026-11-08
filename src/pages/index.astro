@@ -13,6 +13,7 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import PressStrip from '../components/PressStrip.astro';
+import TrustStrip from '../components/TrustStrip.astro';
 import Services from '../components/Services.astro';
 import WhyMoral from '../components/WhyMoral.astro';
 import Brothers from '../components/Brothers.astro';
@@ -93,6 +94,7 @@ const faqSchema = JSON.stringify({
   <main id="main">
     <Hero />
     <PressStrip />
+    <TrustStrip />
     <Services />
     <Reviews />
     <WorkGallery />
@@ -109,4 +111,5 @@ const faqSchema = JSON.stringify({
 
 <script>
   import '../scripts/quote-form.ts';
+  import '../scripts/enhance.ts';
 </script>

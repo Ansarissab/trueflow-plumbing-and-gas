@@ -8,7 +8,10 @@
  *   - without photos:     URLSearchParams + page (path)
  *   - Turnstile rendered lazily (sitekey/size read from .cf-turnstile data
  *     attributes), token polled before send; missing token → "verify" failure.
- *   - success → gtag form_submit_success → redirect /thank-you
+ *   - friendly inline validation on the four required fields (novalidate is
+ *     set from JS only, so JS-off visitors keep the native required checks).
+ *   - success → gtag form_submit_success → inline success card replaces the
+ *     form. The /thank-you page remains deployed for the live mirror flow.
  *   - failure → gtag form_submit_fail {fail_mode: 'send'} → data-fail-send note
  *
  * Also replicates the live homepage's trade preselect: buttons carrying
@@ -89,6 +92,46 @@ function wireForm(form: HTMLFormElement): void {
   const photoErrorMsg = form.querySelector<HTMLElement>('[data-photo-error]');
   const photoChosenMsg = form.querySelector<HTMLElement>('[data-photo-chosen]');
 
+  /* Friendly inline validation. Rules only take over from JS — `noValidate`
+     is set here so markup-driven native validation still protects JS-off. */
+  form.noValidate = true;
+
+  const fieldError = (el: HTMLInputElement | HTMLTextAreaElement, msg: string | null): void => {
+    const err = el.closest<HTMLElement>('.field')?.querySelector<HTMLElement>('[data-error]');
+    if (err) {
+      err.textContent = msg ?? '';
+      err.hidden = !msg;
+    }
+    el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  };
+
+  const rules = ([
+    ['name', (v: string) => v.trim().length >= 2, 'Tell us your name so we know who to call back.'],
+    [
+      'phone',
+      (v: string) => /^[+()\d\-.\s]{8,16}$/.test(v.trim()),
+      "That number looks a little short — add your best contact number, e.g. 0400 000 000.",
+    ],
+    ['suburb', (v: string) => v.trim().length >= 2, 'Which suburb are you in? It helps us plan the visit.'],
+    [
+      'message',
+      (v: string) => v.trim().length >= 5,
+      'One quick line about the problem — \u201Ctap leaking under the sink\u201D is plenty.',
+    ],
+  ] as const)
+    .map(([name, ok, msg]) => {
+      const input = form.querySelector<HTMLInputElement | HTMLTextAreaElement>(`[name="${name}"]`);
+      return input ? { input, ok, msg } : null;
+    })
+    .filter((r) => r !== null) as { input: HTMLInputElement | HTMLTextAreaElement; ok: (v: string) => boolean; msg: string }[];
+
+  // Errors clear themselves as soon as the field becomes valid while typing.
+  rules.forEach(({ input, ok }) => {
+    input.addEventListener('input', () => {
+      if (ok(input.value) && input.getAttribute('aria-invalid') === 'true') fieldError(input, null);
+    });
+  });
+
   const setPhotoError = (message: string | null): void => {
     if (!photoErrorMsg) return;
     photoErrorMsg.textContent = message ?? '';
@@ -137,6 +180,24 @@ function wireForm(form: HTMLFormElement): void {
       }
     };
     if (submitBtn) submitBtn.disabled = true;
+
+    // Friendly validation first — no spinner, no Turnstile wait when the
+    // visitor can fix a field instead.
+    let firstBad: HTMLInputElement | HTMLTextAreaElement | null = null;
+    for (const { input, ok, msg } of rules) {
+      const good = ok(input.value);
+      fieldError(input, good ? null : msg);
+      if (!good && !firstBad) firstBad = input;
+    }
+    if (firstBad) {
+      unbusy();
+      firstBad.focus();
+      firstBad.scrollIntoView({
+        block: 'center',
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      });
+      return;
+    }
 
     const showFail = (failMode: 'send' | 'verify'): void => {
       gtagEvent('form_submit_fail', { fail_mode: failMode });
@@ -193,7 +254,15 @@ function wireForm(form: HTMLFormElement): void {
       const response = await fetch(ENDPOINT, { method: 'POST', body });
       if (!response.ok) throw new Error(String(response.status));
       gtagEvent('form_submit_success', { transport_type: 'beacon' });
-      window.location.assign('/thank-you');
+
+      // Success replaces the form in place (worker contract unchanged).
+      const success = form.querySelector<HTMLElement>('[data-qf-success]');
+      if (success) {
+        success.hidden = false;
+        form.classList.add('is-sent');
+        success.focus({ preventScroll: true });
+      }
+      unbusy();
     } catch {
       showFail('send');
       unbusy();

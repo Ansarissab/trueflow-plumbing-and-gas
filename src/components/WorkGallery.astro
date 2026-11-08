@@ -7,25 +7,24 @@
  */
 const items = [
   {
-    src: 'services/blocked-drains.webp',
-    alt: 'A sewer-jetting rig with the 1300 522 107 panel on the back of a Moral Service vehicle',
-    cap: 'Blocked drains',
-    sub: 'Sewer-jetting rig, ready for the blockage.',
-  },
-  {
-    src: 'services/switchboards.webp',
+    base: 'sewer-jet',
+    alt: 'Our sewer-jetting rig, ready for the blockage, mounted on the Moral Service work vehicle',
+    cap: 'Our sewer-jet rig',
+    sub: 'Ready for the blockage.',
+  },  {
+    base: 'switchboard',
     alt: 'A Moral Service electrician working on a home switchboard with an insulated screwdriver',
     cap: 'Switchboard upgrades',
     sub: 'Brought up to current Australian standards.',
   },
   {
-    src: 'services/hot-water.webp',
-    alt: 'An outdoor hot water system being repaired at a Gold Coast home',
+    base: 'hot-water',
+    alt: 'A Moral Service plumber repairing an outdoor hot water system at a Gold Coast home',
     cap: 'Hot water systems',
     sub: 'Gas, electric, solar or heat pump.',
   },
   {
-    src: 'services/fixture-installs.webp',
+    base: 'fixture',
     alt: 'A Moral Service electrician fitting an exterior wall light beside a front door',
     cap: 'Lights, fans & power points',
     sub: 'Feature and outdoor lighting installed.',
@@ -35,7 +34,7 @@ const items = [
 
 <section class="work section" id="work">
   <div class="container">
-    <div class="shead">
+    <div class="shead" data-reveal>
       <span class="label">On the tools</span>
       <h2 class="display">Job sites, <span class="hl">not stock photos.</span></h2>
       <p class="lead">
@@ -47,11 +46,14 @@ const items = [
       </p>
     </div>
 
-    <div class="work__grid">
+    <div class="work__grid" data-reveal-group>
       {items.map((it) => (
-        <figure class="work__item">
-          <div class="plate">
-            <img src={`images/${it.src}`} alt={it.alt} width="1096" height="730" loading="lazy" />
+        <figure class="work__item" data-reveal>
+          <div class="plate plate--zoom">
+            <picture>
+              <source type="image/webp" srcset={`images/services/gallery/${it.base}.webp`} width="1120" height="840" />
+              <img src={`images/services/gallery/${it.base}.jpg`} alt={it.alt} width="1120" height="840" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <figcaption class="work__cap">
             <b>{it.cap}</b>
@@ -61,7 +63,7 @@ const items = [
       ))}
     </div>
 
-    <p class="work__note">
+    <p class="work__note" data-reveal>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="8.4" />
         <path d="M8.2 12.2l2.7 2.7 5-5.3" />

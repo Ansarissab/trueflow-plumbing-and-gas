@@ -9,7 +9,7 @@
 
 <section class="cta section" id="quote">
   <div class="container cta__grid">
-    <div>
+    <div data-reveal>
       <span class="label">Get a free fixed quote</span>
       <h2 class="display">Know <span class="hl">the price</span> before work begins.</h2>
       <p class="lead" style="margin-top: var(--space-4);">
@@ -28,35 +28,40 @@
     </div>
 
     <form class="formcard" data-quote-form>
-      <h3>How can we best assist you?</h3>
+      <div class="formcard__head">
+        <h3>How can we best assist you?</h3>
 
-      <a class="grate grate--in-form" href="#reviews" aria-label="Rated 4.9 out of 5 on Google — jump to reviews">
-        <img class="grate__g" src="images/google-g.svg" alt="" width="24" height="24" loading="lazy" />
-        <span class="grate__body">
-          <span class="grate__top">
-            <strong class="grate__score">4.9</strong>
-            <span class="grate__stars" aria-hidden="true">{Array.from({ length: 5 }).map(() => (
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3-5.8 3 1.1-6.5L2.6 9.4l6.5-.9z"/></svg>
-            ))}</span>
+        <a class="grate grate--in-form" href="#reviews" aria-label="Rated 4.9 out of 5 on Google — jump to reviews">
+          <img class="grate__g" src="images/google-g.svg" alt="" width="24" height="24" loading="lazy" />
+          <span class="grate__body">
+            <span class="grate__top">
+              <strong class="grate__score" data-count="4.9" data-decimals="1">4.9</strong>
+              <span class="grate__stars" aria-hidden="true">{Array.from({ length: 5 }).map(() => (
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3-5.8 3 1.1-6.5L2.6 9.4l6.5-.9z"/></svg>
+              ))}</span>
+            </span>
+            <span class="grate__label"><span data-count="149">149</span> Google reviews</span>
           </span>
-          <span class="grate__label">149 Google reviews</span>
-        </span>
-      </a>
+        </a>
+      </div>
 
       <div class="qf-grid qf-form">
         <label class="field">
           <span>Name</span>
           <input type="text" name="name" placeholder="Your name" required autocomplete="name" />
+          <small class="field-error" data-error hidden></small>
         </label>
         <label class="field">
           <span>Phone</span>
           <input type="tel" name="phone" placeholder="0400 000 000" required autocomplete="tel" />
+          <small class="field-error" data-error hidden></small>
         </label>
         <label class="field">
           <span>Suburb</span>
           <input type="text" name="suburb" placeholder="e.g. Burleigh Heads" required />
+          <small class="field-error" data-error hidden></small>
         </label>
-        <label class="field">
+        <label class="field field--svc">
           <span>Service (optional)</span>
           <select name="service">
             <option value="" selected>Plumbing, electrical, or not sure?</option>
@@ -68,6 +73,7 @@
         <label class="field field--full">
           <span>What's the problem?</span>
           <textarea name="message" rows="2" placeholder="e.g. kitchen tap leaking under the sink" required></textarea>
+          <small class="field-error" data-error hidden></small>
         </label>
         <label class="field field--full">
           <span>Email (optional)</span>
@@ -86,6 +92,12 @@
 
       <button class="btn btn--primary qf-submit" type="submit">Get a free fixed quote</button>
 
+      <ul class="qf-bullets">
+        <li><strong>Free fixed quote</strong> — the price up front costs nothing</li>
+        <li><strong>$88 diagnosis visit</strong> credited back within 14 days</li>
+        <li><strong>Lifetime workmanship warranty</strong> on homes</li>
+      </ul>
+
       <p class="qf-reply">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
@@ -98,6 +110,16 @@
         <span data-fail-send hidden>Your message didn't send. Email <a href="mailto:contact@moralservice.com.au">contact@moralservice.com.au</a> and we'll look after you.</span>
         <span data-fail-verify hidden>We couldn't verify your browser. Refresh the page and try again, or email <a href="mailto:contact@moralservice.com.au">contact@moralservice.com.au</a>.</span>
       </p>
+
+      {/* Success replaces the form after POST ok — see quote-form.ts. */}
+      <div class="qf-success" data-qf-success hidden role="status" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" />
+          <path d="M8.2 12.4l2.7 2.7 5-5.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <p class="qf-success__t">Thanks, we'll call you within 2 business hours (7am&#8211;5pm Mon&#8211;Fri).</p>
+        <p><strong>Emergency? Call <a href="tel:1300522107">1300 522 107</a> now.</strong></p>
+      </div>
     </form>
   </div>
 </section>

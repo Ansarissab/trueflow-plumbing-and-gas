@@ -1,10 +1,12 @@
 ---
 /**
  * Press strip — "As mentioned on". Ported verbatim from the live homepage's
- * .mentioned section: same outlets, links, alt text and relative logo heights
- * (domain 30px, realestate 34, tradie 34, pgc 42, seniors 44). Slow CSS-only
- * marquee with two aria-hidden duplicate groups; static wrap on mobile and
- * under prefers-reduced-motion.
+ * .mentioned section: same outlets, links, alt text. Display heights ride
+ * `--h` (domain 30px, realestate 34, tradie 34, pgc 42, seniors 44 — the sizes
+ * the live site renders); `w`/`h` attrs carry the trimmed file's pixel dims so
+ * the layout box keeps the native aspect ratio. Slow CSS-only marquee with two
+ * aria-hidden duplicate groups; static wrap on mobile and under
+ * prefers-reduced-motion.
  */
 const outlets = [
   {
@@ -12,6 +14,7 @@ const outlets = [
     alt: 'news.com.au',
     w: 200,
     h: 34,
+    disp: 34,
     label: 'Moral Service mentioned on news.com.au, opens in a new tab',
     href: 'https://www.realestate.com.au/news/hidden-plumbing-issue-reveals-shocking-truth-about-aussie-water-bills',
   },
@@ -20,6 +23,7 @@ const outlets = [
     alt: 'Domain',
     w: 271,
     h: 64,
+    disp: 30,
     label: 'Moral Service mentioned on Domain, opens in a new tab',
     href: 'https://www.domain.com.au/news/bingo-brother-how-a-gold-coast-tradie-located-a-pipe-ruining-a-clients-bedroom-floor-1451161/',
   },
@@ -28,6 +32,7 @@ const outlets = [
     alt: 'Plumbing & Gas Conference 2026',
     w: 318,
     h: 84,
+    disp: 42,
     label: 'Moral Service mentioned on Plumbing & Gas Conference 2026, opens in a new tab',
     href: 'https://au.entegy.events/pgc2026/Speakers',
   },
@@ -36,6 +41,7 @@ const outlets = [
     alt: 'Tradie AI',
     w: 230,
     h: 68,
+    disp: 34,
     label: 'Moral Service mentioned on Tradie AI, opens in a new tab',
     href: 'https://www.tradie-ai.com/',
   },
@@ -44,6 +50,7 @@ const outlets = [
     alt: 'Seniors Discount Club',
     w: 89,
     h: 88,
+    disp: 44,
     label: 'Moral Service mentioned on Seniors Discount Club, opens in a new tab',
     href: 'https://seniorsdiscountclub.com.au/threads/do-this-one-simple-valve-check—or-watch-your-water-bills-skyrocket.83309/',
     name: 'Seniors Discount Club',
@@ -70,7 +77,7 @@ const groups = [outlets, outlets, outlets];
                   aria-label={o.label}
                   tabindex={i > 0 ? '-1' : undefined}
                 >
-                  <img src={o.src} alt={o.alt} width={o.w} height={o.h} style={`--h: ${o.h}px`} />
+                  <img src={o.src} alt={o.alt} width={o.w} height={o.h} style={`--h: ${o.disp}px`} />
                   {o.name && <span class="press__name">{o.name}</span>}
                 </a>
               </li>

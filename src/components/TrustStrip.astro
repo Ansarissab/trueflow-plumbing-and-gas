@@ -1,0 +1,25 @@
+---
+/**
+ * Trust strip — slim credibility bar right under the press strip (v1
+ * reinstatement, spec titles). Four verified facts only:
+ * owner-operated / both trades licensed / price fixed first / lifetime
+ * workmanship warranty.
+ */
+const items = [
+  { t: 'Owner-operated', d: 'You deal directly with Shaun and Justin.' },
+  { t: 'Both trades licensed', d: 'QLD & NSW, fully insured.' },
+  { t: 'Price fixed first', d: 'You approve the price before work starts.' },
+  { t: 'Lifetime workmanship warranty', d: 'On homes — see the full terms.' },
+];
+---
+
+<section class="trust" aria-label="Why locals call Moral Service">
+  <div class="container trust__row" data-reveal-group>
+    {items.map((it) => (
+      <p class="trust__item" data-reveal>
+        <strong>{it.t}</strong>
+        <span>{it.d}</span>
+      </p>
+    ))}
+  </div>
+</section>

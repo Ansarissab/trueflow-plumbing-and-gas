@@ -27,14 +27,14 @@ const steps = [
 <section class="rates section" id="process">
   <div class="container proc__grid">
     <div>
-      <div class="shead">
+      <div class="shead" data-reveal>
         <span class="label">Our Process</span>
         <h2 class="display">Simple from <span class="hl">start to finish.</span></h2>
       </div>
 
-      <ol class="steps">
+      <ol class="steps" data-reveal-group>
         {steps.map((s, i) => (
-          <li class="step">
+          <li class="step" data-reveal>
             <span class="step__num" aria-hidden="true">{i + 1}</span>
             <div>
               <h3 class="step__t">{s.t}</h3>
@@ -46,7 +46,7 @@ const steps = [
     </div>
 
     <aside class="proc__side">
-      <div class="ratecard">
+      <div class="ratecard" data-reveal>
         <p class="ratecard__top">
           <span>What it costs</span>
           <small>The rate card</small>
@@ -54,17 +54,17 @@ const steps = [
         <dl>
           <div class="rate-row">
             <dt>Free fixed quote</dt>
-            <dd class="rate-fee">$0</dd>
+            <dd class="rate-fee" data-count="0" data-prefix="$">$0</dd>
             <dd>Priced from your call or photos — the quote costs you nothing.</dd>
           </div>
           <div class="rate-row">
             <dt>Diagnosis visit</dt>
-            <dd class="rate-fee">$88</dd>
+            <dd class="rate-fee" data-count="88" data-prefix="$">$88</dd>
             <dd>Inc GST, covers the first 30 minutes on site. <strong>Credited off your invoice if you go ahead within 14 days.</strong></dd>
           </div>
           <div class="rate-row">
             <dt>Beyond 30 minutes</dt>
-            <dd class="rate-fee">$165/hr</dd>
+            <dd class="rate-fee" data-count="165" data-prefix="$" data-suffix="/hr">$165/hr</dd>
             <dd>Inc GST, charged in 15-minute blocks. We tell you before we run past the first 30 minutes.</dd>
           </div>
         </dl>

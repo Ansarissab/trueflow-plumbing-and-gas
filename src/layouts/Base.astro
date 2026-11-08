@@ -101,17 +101,44 @@ const { title, description, schema } = Astro.props;
     <a class="skip" href="#main">Skip to content</a>
     <slot />
 
-    <!-- Restrained reveal-on-scroll (reduced-motion aware) -->
+    <!-- Reveal-on-scroll + sticky-bar arming (reduced-motion aware).
+         Hidden states are gated behind a JS-added `js-reveal` class on <html> —
+         content stays fully visible with JS off. The script also strips each
+         element's stagger delay once its reveal completes. -->
     <script is:inline>
       (function () {
-        var els = document.querySelectorAll('[data-reveal]');
-        if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+        var html = document.documentElement;
+        if (html.classList.contains('js-reveal')) return;
+        html.classList.add('js-reveal');
+
+        var bar = document.querySelector('.mbar');
+        if (bar) bar.classList.add('mbar--armed');
+
+        var els = Array.prototype.slice.call(document.querySelectorAll('[data-reveal],[data-reveal-letter]'));
+        var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce || !('IntersectionObserver' in window)) {
           els.forEach(function (el) { el.classList.add('in'); });
           return;
         }
+
+        // Sibling stagger: 80ms steps inside each [data-reveal-group] (letters
+        // and other non-grouped elements carry their own inline delays).
+        document.querySelectorAll('[data-reveal-group]').forEach(function (group) {
+          var kids = Array.prototype.slice.call(group.querySelectorAll('[data-reveal]'));
+          kids.forEach(function (el, i) { el.style.setProperty('--rd', (i * 80) + 'ms'); });
+        });
+
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
-            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+            if (!e.isIntersecting) return;
+            var el = e.target;
+            io.unobserve(el);
+            el.classList.add('in');
+            el.addEventListener('transitionend', function done(ev) {
+              if (ev.target !== el || (ev.propertyName !== 'transform' && ev.propertyName !== 'opacity')) return;
+              el.style.removeProperty('--rd');
+              el.removeEventListener('transitionend', done);
+            });
           });
         }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
         els.forEach(function (el) { io.observe(el); });

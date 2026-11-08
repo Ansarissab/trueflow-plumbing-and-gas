@@ -17,7 +17,7 @@ const { faqs, side = true } = Astro.props;
 <section class="section" id="faq">
   <div class="container faq__wrap">
     {side && (
-      <div class="faq__side">
+      <div class="faq__side" data-reveal>
         <span class="label">FAQ</span>
         <h2 class="display">Our commonly asked <span class="hl">questions</span></h2>
         <p class="lead" style="margin-top: var(--space-4);">
@@ -27,9 +27,9 @@ const { faqs, side = true } = Astro.props;
       </div>
     )}
 
-    <div class="faq__items">
+    <div class="faq__items" data-reveal-group>
       {faqs.map((f) => (
-        <details class="faq__item">
+        <details class="faq__item" data-reveal>
           <summary>
             {f.q}
             <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

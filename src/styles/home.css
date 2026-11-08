@@ -74,6 +74,7 @@
   --radius: 2px;
   --ease: cubic-bezier(.3, 0, 0, 1);
   --t: .18s var(--ease);
+  --shadow-lift: 0 10px 26px -10px rgba(var(--ink-rgb), .28);
 
   /* ---- Fixed type scale (px = rem × 16; every font-size uses these) ---- */
   --fs-12: .75rem;
@@ -128,6 +129,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  interpolate-size: allow-keywords;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -382,6 +384,12 @@ h3.display {
   color: var(--royal);
 }
 
+/* Ghost — same hard-shadow mechanics, transparent face (hero secondary CTA) */
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
 /* Arrow link (text + reveal arrow) */
 .arrowlink {
   display: inline-flex;
@@ -463,24 +471,43 @@ h3.display {
   margin-top: var(--space-4);
 }
 
-/* ---------- Reveal (restrained, reduced-motion aware) ---------- */
-[data-reveal] {
+/* ---------- Reveal-on-scroll + count-up numerals ----------
+   Hidden states only exist while the JS-added `.js-reveal` class is on
+   <html> (Base.astro inline script) — with JS off everything is visible.
+   Stagger delays ride the --rd custom property, set as inline styles by the
+   script (group) or in markup (letters); transitionend cleans them up. */
+.js-reveal [data-reveal],
+.js-reveal [data-reveal-letter] {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity .55s var(--ease), transform .55s var(--ease);
+  transform: translate3d(0, 20px, 0);
+  transition: opacity .5s var(--ease) var(--rd, 0ms), transform .5s var(--ease) var(--rd, 0ms);
 }
 
-[data-reveal].in {
+.js-reveal [data-reveal].in,
+.js-reveal [data-reveal-letter].in {
   opacity: 1;
   transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] {
+  .js-reveal [data-reveal],
+  .js-reveal [data-reveal-letter] {
     opacity: 1;
     transform: none;
     transition: none;
   }
+}
+
+/* Count-up numerals (enhance.ts): tabular digits + width floors so columns
+   and headline chips don't twitch while the numbers roll. */
+[data-count] {
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  min-width: 3ch;
+}
+
+.rate-fee[data-count] {
+  min-width: 7ch;
 }
 
 /* Horizontal-overflow insurance.
@@ -1010,7 +1037,8 @@ body {
 .press__track {
   display: flex;
   width: max-content;
-  animation: press-scroll 34s linear infinite;
+  will-change: transform;
+  animation: press-scroll 44s linear infinite;
 }
 
 .press__viewport:hover .press__track {
@@ -1102,6 +1130,56 @@ body {
   .press__viewport {
     -webkit-mask-image: none;
     mask-image: none;
+  }
+}
+
+/* Trust strip — four owner-operator claims in one slim dust band */
+.trust {
+  background: var(--pearl-dust);
+  border-bottom: 2px solid var(--ink);
+  padding-block: var(--space-4);
+}
+
+.trust__row {
+  display: grid;
+  gap: var(--space-3) var(--space-5);
+}
+
+.trust__item {
+  position: relative;
+  padding-left: 15px;
+  display: grid;
+  gap: 2px;
+  align-content: start;
+  font-size: var(--fs-13);
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.trust__item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .38em;
+  width: 8px;
+  height: 8px;
+  background: var(--royal);
+  border-radius: var(--radius);
+}
+
+.trust__item strong {
+  font-family: var(--font-display);
+  font-variation-settings: "wght" 750, "wdth" 100;
+  font-weight: 750;
+  font-size: var(--fs-14);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+@media (min-width: 768px) {
+  .trust__row {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -1584,8 +1662,23 @@ body {
 
 .work__item img {
   width: 100%;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+}
+
+/* Gallery plates are hard 4:3 crops; hover walks the still 3% closer.
+   `scale` (not transform) so the reveal transform composes cleanly. */
+.plate--zoom {
+  overflow: hidden;
+}
+
+.plate--zoom img {
+  scale: 1;
+  transition: scale .45s var(--ease);
+}
+
+.plate--zoom:hover img {
+  scale: 1.03;
 }
 
 .work__item .plate::after {
@@ -1724,7 +1817,9 @@ body {
   }
 
   .revs .rev:nth-child(even) {
-    transform: translateY(22px);
+    /* Asymmetric two-column rhythm, as a margin so the reveal transform and
+       the hover lift don't fight over `transform`. */
+    margin-top: 22px;
   }
 }
 
@@ -1736,6 +1831,14 @@ body {
   display: grid;
   gap: var(--space-4);
   align-content: start;
+  /* Micro-lift on hover: `translate` keeps it independent of the reveal
+     transform. */
+  transition: translate .15s var(--ease), box-shadow .15s var(--ease);
+}
+
+.rev:hover {
+  translate: 0 -2px;
+  box-shadow: var(--shadow-lift);
 }
 
 .rev__stars {
@@ -2091,7 +2194,7 @@ body {
   width: 20px;
   height: 20px;
   color: var(--royal);
-  transition: transform var(--t);
+  transition: transform .3s var(--ease);
 }
 
 .faq__item[open] summary .chev {
@@ -2100,6 +2203,19 @@ body {
 
 .faq__item[open] summary {
   color: var(--royal);
+}
+
+/* Smooth height on open/close: block-size animates 0 ↔ auto (Chrome 131+
+   via interpolate-size on html; browsers without ::details-content styling
+   just snap open/closed, which is fine). */
+.faq__item::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition: block-size .3s var(--ease), content-visibility .3s allow-discrete;
+}
+
+.faq__item[open]::details-content {
+  block-size: auto;
 }
 
 .faq__a {
@@ -2202,11 +2318,18 @@ body {
   text-transform: uppercase;
 }
 
-/* Google badge sits right under the form heading — social proof at the CTA.
-   The shared .grate chip needs no recolour on the pearl card. */
+/* Heading row: the question on the left, the Google chip on the right */
+.formcard__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* Google badge rides the head row, level with the question */
 .formcard .grate--in-form {
-  margin-top: var(--space-2);
-  margin-bottom: calc(var(--space-4) * -1);
+  margin-top: 2px;
 }
 
 .qf-form {
@@ -2225,7 +2348,8 @@ body {
     grid-template-columns: 1fr 1fr;
   }
 
-  .qf-grid .field--full {
+  .qf-grid .field--full,
+  .qf-grid .field--svc {
     grid-column: 1 / -1;
   }
 }
@@ -2276,6 +2400,19 @@ body {
 .field textarea {
   resize: vertical;
   min-height: 84px;
+}
+
+/* Inline validation messages (quote-form.ts) — red slug under the field */
+.field-error {
+  color: #7c1c0e;
+  font-size: var(--fs-13);
+  font-weight: 600;
+}
+
+.field input[aria-invalid="true"],
+.field select[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: #a12813;
 }
 
 .field--file small {
@@ -2377,6 +2514,72 @@ body {
 
 .qf-fail a {
   font-weight: 700;
+}
+
+/* Proof bullets close to the submit button */
+.qf-bullets {
+  margin-top: var(--space-4);
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: .45rem;
+}
+
+.qf-bullets li {
+  position: relative;
+  padding-left: 16px;
+  font-size: var(--fs-14);
+  color: var(--muted);
+}
+
+.qf-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .5em;
+  width: 8px;
+  height: 8px;
+  background: var(--royal);
+  border-radius: var(--radius);
+}
+
+.qf-bullets li strong {
+  color: var(--ink);
+}
+
+/* Success — replaces every other block in the card once POST ok
+   (quote-form.ts unhides it). The [hidden] guard keeps `display: grid`
+   from defeating the attribute. */
+.qf-success {
+  display: grid;
+  gap: var(--space-3);
+  padding-block: var(--space-2);
+}
+
+.qf-success[hidden] {
+  display: none;
+}
+
+.qf-success svg {
+  width: 42px;
+  height: 42px;
+  color: var(--royal);
+}
+
+.qf-success__t {
+  font-family: var(--font-display);
+  font-variation-settings: "wght" 750, "wdth" 105;
+  font-weight: 750;
+  font-size: var(--fs-24);
+  line-height: 1.25;
+}
+
+.qf-success a {
+  color: var(--royal);
+}
+
+.formcard.is-sent > :not(.qf-success) {
+  display: none;
 }
 
 /* ============================================================
@@ -2603,6 +2806,23 @@ body {
   flex: none;
 }
 
+/* Slides out of the way for JS visitors (enhance.ts arms it before paint and
+   toggles --shown between hero-out and quote-in). No JS = always shown. */
+.mbar--armed {
+  transform: translate3d(0, 110%, 0);
+  transition: transform .45s var(--ease);
+}
+
+.mbar--armed.mbar--shown {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mbar--armed {
+    transition: none;
+  }
+}
+
 /* ≤480px: the full "Get a free fixed quote" label wraps to two lines in the
    quote tile — shrink both tiles together and give them air to keep the
    verbatim label intact instead of clipping it. */
@@ -2685,6 +2905,12 @@ body {
   background: var(--pearl);
   overflow: hidden;
   box-shadow: 6px 6px 0 0 rgba(var(--ink-rgb), .08);
+  transition: translate .15s var(--ease), box-shadow .15s var(--ease);
+}
+
+.owner:hover {
+  translate: 0 -2px;
+  box-shadow: 6px 6px 0 0 rgba(var(--ink-rgb), .08), var(--shadow-lift);
 }
 
 .owner img {
