@@ -580,67 +580,67 @@ body {
   }
 }
 
+/* Phone — the header's primary action now that the quote CTA lives in the
+   hero and menu, so it wears the brand's button treatment. */
 .hdr__right .hdr__phone {
   display: inline-flex;
   align-items: center;
-  gap: .5em;
+  gap: .55em;
+  padding: .5em .95em;
+  background: var(--royal);
+  color: var(--pearl);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 3px 3px 0 0 var(--ink);
   font-family: var(--font-display);
   font-variation-settings: "wght" 800, "wdth" 100;
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   letter-spacing: .02em;
   text-decoration: none;
   text-transform: uppercase;
-  color: var(--ink);
   white-space: nowrap;
-}
-
-.hdr__phone svg {
-  width: 18px;
-  height: 18px;
-  flex: none;
+  transition: transform var(--t), box-shadow var(--t), background var(--t), color var(--t);
 }
 
 .hdr__right .hdr__phone:hover {
-  color: var(--royal);
+  background: var(--ink);
+  color: var(--sun);
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 0 var(--ink);
 }
 
-.hdr__cta {
-  font-size: .88rem;
-  padding: .85em 1.35em;
+.hdr__phone svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
 }
 
-/* Compact header in the 1024–1359 band: nav is back but the full desktop row
-   (logo + 6 links + phone + CTA = ~1140px) only fits from 1360 up, and
-   overflow-x: clip would silently crop the CTA on in-between widths. */
+/* Compact header in the 1024–1359 band: nav + logo shrink a touch so the
+   phone button — the only right-side action now that the quote CTA moved to
+   the hero/menu — always stays inside the clipped viewport edge. */
 @media (min-width: 1024px) and (max-width: 1359px) {
   .hdr__inner {
-    gap: var(--space-4);
+    gap: var(--space-3);
   }
 
   .hdr__logo img {
-    height: 46px;
+    height: 44px;
   }
 
   .hdr__nav {
-    gap: 1.15rem;
+    gap: 1rem;
   }
 
   .hdr__nav a {
-    font-size: .88rem;
-  }
-
-  .hdr__right {
-    gap: var(--space-4);
+    font-size: .84rem;
+    letter-spacing: .04em;
   }
 
   .hdr__right .hdr__phone {
-    display: none;
-  }
-
-  .hdr__cta {
-    font-size: .86rem;
-    padding: .8em 1.05em;
+    font-size: .95rem;
+    padding: .48em .75em;
+    box-shadow: 2px 2px 0 0 var(--ink);
   }
 }
 
@@ -816,25 +816,10 @@ body {
   text-wrap: balance;
 }
 
-.hero__h1b {
-  display: block;
-  margin-top: .38em;
-  font-variation-settings: "wght" 720, "wdth" 102;
-  font-size: clamp(1.12rem, 2.1vw, 1.5rem);
-  letter-spacing: .02em;
-  line-height: 1.3;
-  color: var(--royal);
-}
-
 @media (max-width: 430px) {
   .hero__h1 {
     font-size: clamp(1.85rem, 8.4vw, 2.2rem);
   }
-}
-
-.hero__sub {
-  margin-top: var(--space-5);
-  max-width: 50ch;
 }
 
 .hero__urgent {
@@ -952,13 +937,14 @@ body {
   margin-top: .18em;
 }
 
-/* Badge row (MPAQ + Master Electricians) */
+/* Badge row (MPAQ + Master Electricians) — now sits under the H1 as the */
+/* hero's trust line (the brothers paragraph was retired). */
 .hero__creds {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 1.25rem 2rem;
-  margin-top: var(--space-6);
+  margin-top: var(--space-5);
 }
 
 .hero__cred img {

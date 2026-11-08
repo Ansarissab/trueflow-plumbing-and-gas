@@ -48,9 +48,8 @@ function loadTurnstile(): Promise<void> {
   return (
     turnstileLoad ||
     (turnstileLoad = new Promise<void>((resolve, reject) => {
-      const w = window as TurnstileWindow;
-      if (w.turnstile) return resolve();
-      w.__ktTurnstileReady = () => resolve();
+      if (window.turnstile) return resolve();
+      window.__ktTurnstileReady = () => resolve();
       const s = document.createElement('script');
       s.src =
         'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__ktTurnstileReady';
