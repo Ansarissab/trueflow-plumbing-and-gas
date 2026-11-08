@@ -1,0 +1,75 @@
+---
+/**
+ * Press strip — "As mentioned on". Ported verbatim from the live homepage's
+ * .mentioned section: same outlets, links, alt text and relative logo heights
+ * (domain 30px, realestate 34, tradie 34, pgc 42, seniors 44). Slow CSS-only
+ * marquee with two aria-hidden duplicate groups; static wrap on mobile and
+ * under prefers-reduced-motion.
+ */
+const outlets = [
+  {
+    src: 'images/mentioned-on/realestate.svg',
+    alt: 'news.com.au',
+    w: 200,
+    h: 34,
+    label: 'Moral Service mentioned on news.com.au, opens in a new tab',
+    href: 'https://www.realestate.com.au/news/hidden-plumbing-issue-reveals-shocking-truth-about-aussie-water-bills',
+  },
+  {
+    src: 'images/mentioned-on/domain.png',
+    alt: 'Domain',
+    w: 200,
+    h: 30,
+    label: 'Moral Service mentioned on Domain, opens in a new tab',
+    href: 'https://www.domain.com.au/news/bingo-brother-how-a-gold-coast-tradie-located-a-pipe-ruining-a-clients-bedroom-floor-1451161/',
+  },
+  {
+    src: 'images/mentioned-on/pgc.png',
+    alt: 'Plumbing & Gas Conference 2026',
+    w: 200,
+    h: 42,
+    label: 'Moral Service mentioned on Plumbing & Gas Conference 2026, opens in a new tab',
+    href: 'https://au.entegy.events/pgc2026/Speakers',
+  },
+  {
+    src: 'images/mentioned-on/tradie.png',
+    alt: 'Tradie AI',
+    w: 200,
+    h: 34,
+    label: 'Moral Service mentioned on Tradie AI, opens in a new tab',
+    href: 'https://www.tradie-ai.com/',
+  },
+  {
+    src: 'images/mentioned-on/seniors.webp',
+    alt: 'Seniors Discount Club',
+    w: 200,
+    h: 44,
+    label: 'Moral Service mentioned on Seniors Discount Club, opens in a new tab',
+    href: 'https://seniorsdiscountclub.com.au/threads/do-this-one-simple-valve-check—or-watch-your-water-bills-skyrocket.83309/',
+    name: 'Seniors Discount Club',
+  },
+];
+const groups = [outlets, outlets, outlets];
+---
+
+<section class="press" aria-label="Moral Service in the media">
+  <div class="container">
+    <p class="press__label">As mentioned on</p>
+    <div class="press__viewport">
+      <div class="press__track">
+        {groups.map((g, i) => (
+          <ul class="press__group" aria-hidden={i > 0 ? 'true' : undefined}>
+            {g.map((o) => (
+              <li>
+                <a href={o.href} target="_blank" rel="noopener noreferrer" aria-label={o.label}>
+                  <img src={o.src} alt={o.alt} width={o.w} height={o.h} style={`--h: ${o.h}px`} loading="lazy" />
+                  {o.name && <span class="press__name">{o.name}</span>}
+                </a>
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

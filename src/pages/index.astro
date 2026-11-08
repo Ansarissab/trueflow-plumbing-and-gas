@@ -7,11 +7,12 @@
  *
  * Section order (conversion arc: call early, offer, proof, price, objections,
  * form), preserving every anchor id from the live homepage:
- *   #services #about #why #work #reviews #locations #faq #quote
+ *   #services #reviews #work #about #why #locations #quote #faq
  */
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import PressStrip from '../components/PressStrip.astro';
 import TrustStrip from '../components/TrustStrip.astro';
 import Services from '../components/Services.astro';
 import WhyMoral from '../components/WhyMoral.astro';
@@ -25,7 +26,7 @@ import FinalCta from '../components/FinalCta.astro';
 import Footer from '../components/Footer.astro';
 import MobileContactBar from '../components/MobileContactBar.astro';
 
-const title = 'Plumbing & Electrical Gold Coast | Moral Service — Plumbing & Electrical';
+const title = 'Plumbing & Electrical Gold Coast | Moral Service';
 const description =
   'Reliable plumbing & electrical services across the Gold Coast. Owned and run by two brothers — Shaun and Justin. Free fixed quotes, licensed in both trades, 24/7 emergencies.';
 
@@ -92,16 +93,17 @@ const faqSchema = JSON.stringify({
   <Header />
   <main id="main">
     <Hero />
+    <PressStrip />
     <TrustStrip />
     <Services />
-    <WhyMoral />
-    <Brothers />
-    <WorkGallery />
     <Reviews />
+    <WorkGallery />
+    <Brothers />
+    <WhyMoral />
     <ProcessSteps />
     <ServiceAreas />
-    <Faq faqs={faqs} />
     <FinalCta />
+    <Faq faqs={faqs} />
   </main>
   <Footer />
   <MobileContactBar />
