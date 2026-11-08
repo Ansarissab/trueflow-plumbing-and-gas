@@ -1,0 +1,12 @@
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), sync-xhr=(), usb=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.instagram.com https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://www.google.com https://*.google-analytics.com https://maps.gstatic.com https://maps.googleapis.com https://www.instagram.com https://*.cdninstagram.com https://*.fbcdn.net; font-src 'self' data:; connect-src 'self' https://*.workers.dev https://*.google-analytics.com https://www.googletagmanager.com https://challenges.cloudflare.com https://www.instagram.com https://static.cloudflareinsights.com; frame-src https://www.google.com https://challenges.cloudflare.com https://www.instagram.com; object-src 'none'; base-uri 'self'; form-action 'self' https://moralservice-form-worker.lachlan-8db.workers.dev; frame-ancestors 'self'
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
