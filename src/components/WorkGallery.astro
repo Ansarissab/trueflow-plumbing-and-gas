@@ -1,21 +1,16 @@
 ---
 /**
- * Real work — three genuine job photos from the site's own service pages,
- * with captions that describe the photo (no invented job claims), plus a
- * pointer to the two Instagram accounts the site runs.
+ * Real work — four genuine job photos picked by the 1-second rule (each tile
+ * instantly says what it claims, both trades represented), with captions that
+ * describe the photo (no invented job claims), plus a pointer to the two
+ * Instagram accounts the site runs.
  */
 const items = [
   {
-    src: 'services/cctv-inspections.jpg',
-    alt: 'The CCTV drain inspection reel set up at the kerb on a Gold Coast job',
-    cap: 'CCTV drain inspection',
-    sub: 'You see the footage yourself — no guesswork.',
-  },
-  {
-    src: 'services/hot-water.jpg',
-    alt: 'An outdoor hot water system being repaired at a Gold Coast home',
-    cap: 'Hot water systems',
-    sub: 'Gas, electric, solar or heat pump.',
+    src: 'services/blocked-drains.jpg',
+    alt: 'A sewer-jetting rig with the 1300 522 107 panel on the back of a Moral Service vehicle',
+    cap: 'Blocked drains',
+    sub: 'Sewer-jetting rig, ready for the blockage.',
   },
   {
     src: 'services/switchboards.jpg',
@@ -24,10 +19,16 @@ const items = [
     sub: 'Brought up to current Australian standards.',
   },
   {
-    src: 'services/leak-detection.jpg',
-    alt: 'A Moral Service plumber setting up leak detection gear on the lawn of a Gold Coast home',
-    cap: 'Leak detection',
-    sub: 'Traced without unnecessary damage.',
+    src: 'services/hot-water.jpg',
+    alt: 'An outdoor hot water system being repaired at a Gold Coast home',
+    cap: 'Hot water systems',
+    sub: 'Gas, electric, solar or heat pump.',
+  },
+  {
+    src: 'services/fixture-installs.jpg',
+    alt: 'A Moral Service electrician fitting an exterior wall light beside a front door',
+    cap: 'Lights, fans & power points',
+    sub: 'Feature and outdoor lighting installed.',
   },
 ];
 ---
@@ -50,7 +51,7 @@ const items = [
       {items.map((it) => (
         <figure class="work__item">
           <div class="plate">
-            <img src={`images/${it.src}`} alt={it.alt} loading="lazy" />
+            <img src={`images/${it.src}`} alt={it.alt} width="1600" height="1066" loading="lazy" />
           </div>
           <figcaption class="work__cap">
             <b>{it.cap}</b>

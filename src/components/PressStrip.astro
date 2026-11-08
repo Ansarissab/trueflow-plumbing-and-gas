@@ -62,7 +62,7 @@ const groups = [outlets, outlets, outlets];
             {g.map((o) => (
               <li>
                 <a href={o.href} target="_blank" rel="noopener noreferrer" aria-label={o.label}>
-                  <img src={o.src} alt={o.alt} width={o.w} height={o.h} style={`--h: ${o.h}px`} loading="lazy" />
+                  <img src={o.src} alt={o.alt} width={o.w} height={o.h} style={`--h: ${o.h}px`} />
                   {o.name && <span class="press__name">{o.name}</span>}
                 </a>
               </li>

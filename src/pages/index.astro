@@ -7,13 +7,12 @@
  *
  * Section order (conversion arc: call early, offer, proof, price, objections,
  * form), preserving every anchor id from the live homepage:
- *   #services #reviews #work #about #why #locations #quote #faq
+ *   #services #reviews #work #about #process #faq #why #quote #locations
  */
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import PressStrip from '../components/PressStrip.astro';
-import TrustStrip from '../components/TrustStrip.astro';
 import Services from '../components/Services.astro';
 import WhyMoral from '../components/WhyMoral.astro';
 import Brothers from '../components/Brothers.astro';
@@ -94,16 +93,15 @@ const faqSchema = JSON.stringify({
   <main id="main">
     <Hero />
     <PressStrip />
-    <TrustStrip />
     <Services />
     <Reviews />
     <WorkGallery />
     <Brothers />
-    <WhyMoral />
     <ProcessSteps />
-    <ServiceAreas />
     <FinalCta />
     <Faq faqs={faqs} />
+    <WhyMoral />
+    <ServiceAreas />
   </main>
   <Footer />
   <MobileContactBar />

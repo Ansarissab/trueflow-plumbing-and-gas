@@ -85,12 +85,18 @@
   --fs-20: 1.25rem;
   --fs-24: 1.5rem;
   /* Fluid display sizes — one named step per role, reused everywhere */
-  --fs-hero: clamp(2.2rem, 5.4vw, 3.85rem);          /* H1 */
-  --fs-hero-sm: clamp(1.85rem, 8.4vw, 2.2rem);       /* H1, ≤430px */
-  --fs-display: clamp(1.75rem, 3.6vw, 2.7rem);       /* section H2 */
-  --fs-num: clamp(2.4rem, 5.2vw, 4rem);              /* index numerals */
-  --fs-h3: clamp(1.25rem, 2.6vw, 1.7rem);            /* card H3 */
-  --fs-phone: clamp(1.9rem, 4.5vw, 2.8rem);          /* CTA phone */
+  --fs-hero: clamp(2.2rem, 5.4vw, 3.85rem);
+  /* H1 */
+  --fs-hero-sm: clamp(1.85rem, 8.4vw, 2.2rem);
+  /* H1, ≤430px */
+  --fs-display: clamp(1.75rem, 3.6vw, 2.7rem);
+  /* section H2 */
+  --fs-num: clamp(2.4rem, 5.2vw, 4rem);
+  /* index numerals */
+  --fs-h3: clamp(1.25rem, 2.6vw, 1.7rem);
+  /* card H3 */
+  --fs-phone: clamp(1.9rem, 4.5vw, 2.8rem);
+  /* CTA phone */
 
   --container: 1200px;
   --gutter: clamp(1.25rem, 4.5vw, 2.5rem);
@@ -357,7 +363,7 @@ h3.display {
   color: var(--pearl);
 }
 
-/* Accent button (ProcessSteps "Get my quote") — royal reads as the one brand
+/* Accent button (ProcessSteps rate card CTA) — royal reads as the one brand
    accent; the old yellow variant is retired. */
 .btn--sun {
   background: var(--royal);
@@ -974,72 +980,11 @@ body {
 }
 
 /* ============================================================
-   TRUST STRIP
-   ============================================================ */
-.trust {
-  border-top: 2px solid var(--ink);
-  border-bottom: 2px solid var(--ink);
-  background: var(--pearl);
-}
-
-.trust__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-@media (min-width: 900px) {
-  .trust__grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.trust__item {
-  padding: var(--space-5) var(--space-4) var(--space-4);
-  border-left: 1px solid var(--line);
-}
-
-.trust__item:first-child {
-  border-left: 0;
-  padding-left: 0;
-}
-
-@media (max-width: 899px) {
-  .trust__item:nth-child(odd) {
-    border-left: 0;
-    padding-left: 0;
-  }
-
-  .trust__item:nth-child(-n+2) {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .trust__item:nth-child(3),
-  .trust__item:nth-child(4) {
-    padding-bottom: var(--space-4);
-  }
-}
-
-.trust__t {
-  font-family: var(--font-display);
-  font-variation-settings: "wght" 750, "wdth" 105;
-  font-weight: 750;
-  font-size: var(--fs-14);
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--royal);
-}
-
-.trust__d {
-  margin-top: var(--space-1);
-  font-size: var(--fs-15);
-  color: var(--muted);
-}
-
-/* ============================================================
    PRESS — "As mentioned on" (same outlets/links as the live site)
    ============================================================ */
 .press {
   border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
   padding-block: var(--space-6);
 }
 
@@ -1058,8 +1003,8 @@ body {
 .press__viewport {
   margin-top: var(--space-5);
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 11%, #000 89%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 11%, #000 89%, transparent);
 }
 
 .press__track {
@@ -1078,7 +1023,7 @@ body {
   gap: var(--space-8);
   padding-inline: calc(var(--space-8) / 2);
   list-style: none;
-  margin: 0;
+  margin-right: 2rem;
 }
 
 .press__group a {
@@ -1108,8 +1053,13 @@ body {
 }
 
 @keyframes press-scroll {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(calc(-100% / 3), 0, 0); }
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(calc(-100% / 3), 0, 0);
+  }
 }
 
 @media (max-width: 767px) {
@@ -1243,22 +1193,33 @@ body {
   flex-direction: column;
 }
 
-.svc-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: .4rem var(--space-4);
-  padding: .8rem 1rem;
+/* Service rows — collapsed title list for scanning; native <details> expands
+   the description + trade-page link (keyboard accessible, zero JS). */
+.svc-item {
   border-bottom: 1px solid var(--line);
-  text-decoration: none;
+}
+
+.svc-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: .8rem 1rem;
+  cursor: pointer;
+  list-style: none;
   transition: background var(--t);
 }
 
-.svc-row:hover {
+.svc-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.svc-item summary:hover,
+.svc-item[open] summary {
   background: var(--pearl-dust);
 }
 
-.svc-row strong {
+.svc-item summary strong {
   font-family: var(--font-display);
   font-variation-settings: "wght" 700, "wdth" 100;
   font-weight: 700;
@@ -1267,24 +1228,50 @@ body {
   color: var(--ink);
 }
 
-.svc-row span {
-  grid-column: 1 / -1;
-  font-size: var(--fs-14);
-  line-height: 1.45;
-  color: var(--muted);
+.svc-item[open] summary strong {
+  color: var(--royal);
 }
 
-.svc-row .ar {
-  grid-column: 2;
-  grid-row: 1;
+.svc-item__chev {
+  flex: none;
   font-family: var(--font-display);
   font-weight: 800;
   color: var(--royal);
   transition: transform var(--t);
 }
 
-.svc-row:hover .ar {
-  transform: translateX(4px);
+.svc-item[open] .svc-item__chev {
+  transform: rotate(90deg);
+}
+
+.svc-item__body {
+  padding: 0 1rem 1rem;
+  animation: svc-open .25s var(--ease);
+}
+
+.svc-item__body p {
+  font-size: var(--fs-14);
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+.svc-item__body .arrowlink {
+  margin-top: var(--space-3);
+  font-size: var(--fs-14);
+}
+
+@keyframes svc-open {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-item__body {
+    animation: none;
+  }
 }
 
 .svc-list__foot {
@@ -2184,6 +2171,13 @@ body {
   text-transform: uppercase;
 }
 
+/* Google badge sits right under the form heading — social proof at the CTA.
+   The shared .grate chip needs no recolour on the pearl card. */
+.formcard .grate--in-form {
+  margin-top: var(--space-2);
+  margin-bottom: calc(var(--space-4) * -1);
+}
+
 .qf-form {
   margin-top: var(--space-5);
   display: grid;
@@ -2578,6 +2572,18 @@ body {
   flex: none;
 }
 
+/* ≤480px: the full "Get a free fixed quote" label wraps to two lines in the
+   quote tile — shrink both tiles together and give them air to keep the
+   verbatim label intact instead of clipping it. */
+@media (max-width: 480px) {
+  .mbar a {
+    font-size: var(--fs-12);
+    line-height: 1.2;
+    min-height: 58px;
+    padding-block: 4px;
+  }
+}
+
 @media (min-width: 768px) {
   .mbar {
     display: none;
@@ -2586,7 +2592,7 @@ body {
 
 @media (max-width: 767px) {
   body {
-    padding-bottom: 56px;
+    padding-bottom: 64px;
   }
 
   /* last-child margin-bottom so the sticky bar never covers footer text */

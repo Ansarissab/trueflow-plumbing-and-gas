@@ -60,6 +60,11 @@ const { title, description, schema } = Astro.props;
       openingHours: 'Mo-Fr 07:00-17:00',
       slogan: 'Setting the standard',
       foundingDate: '2019',
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '149',
+      },
       address: { '@type': 'PostalAddress', addressLocality: 'Gold Coast', addressRegion: 'QLD', addressCountry: 'AU' },
       areaServed: [{ '@type': 'City', name: 'Gold Coast' }],
       sameAs: [

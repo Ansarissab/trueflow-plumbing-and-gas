@@ -1,9 +1,10 @@
 ---
 /**
  * Services — two trade plates ("The Rate Card" split), verbatim service
- * descriptions from the existing site. "View more" jumps into each trade page
- * anchor; the CTA preselects the trade in the quote form (scripted in
- * src/scripts/quote-form.ts, same behaviour as the live homepage).
+ * descriptions from the existing site. Rows are native <details> accordions:
+ * titles scan, expanding shows the description + a "Read more" jump into the
+ * trade page anchor; the CTA preselects the trade in the quote form (scripted
+ * in src/scripts/quote-form.ts, same behaviour as the live homepage).
  */
 const plumbing = [
   {
@@ -98,15 +99,20 @@ const electrical = [
         <ul class="svc-list">
           {plumbing.map((s) => (
             <li>
-              <a class="svc-row" href={s.a}>
-                <strong>{s.n}</strong>
-                <span class="ar" aria-hidden="true">→</span>
-                <span>{s.d}</span>
-              </a>
+              <details class="svc-item">
+                <summary>
+                  <strong>{s.n}</strong>
+                  <span class="svc-item__chev" aria-hidden="true">→</span>
+                </summary>
+                <div class="svc-item__body">
+                  <p>{s.d}</p>
+                  <a class="arrowlink" href={s.a}>Read more <span aria-hidden="true">→</span></a>
+                </div>
+              </details>
             </li>
           ))}
           <li class="svc-list__foot">
-            <a class="arrowlink" href="#quote" data-preselect-service="Plumbing">Request a plumbing quote <span aria-hidden="true">→</span></a>
+            <a class="arrowlink" href="#quote" data-preselect-service="Plumbing">Get a free fixed quote <span aria-hidden="true">→</span></a>
           </li>
         </ul>
       </article>
@@ -124,15 +130,20 @@ const electrical = [
         <ul class="svc-list">
           {electrical.map((s) => (
             <li>
-              <a class="svc-row" href={s.a}>
-                <strong>{s.n}</strong>
-                <span class="ar" aria-hidden="true">→</span>
-                <span>{s.d}</span>
-              </a>
+              <details class="svc-item">
+                <summary>
+                  <strong>{s.n}</strong>
+                  <span class="svc-item__chev" aria-hidden="true">→</span>
+                </summary>
+                <div class="svc-item__body">
+                  <p>{s.d}</p>
+                  <a class="arrowlink" href={s.a}>Read more <span aria-hidden="true">→</span></a>
+                </div>
+              </details>
             </li>
           ))}
           <li class="svc-list__foot">
-            <a class="arrowlink" href="#quote" data-preselect-service="Electrical">Request an electrical quote <span aria-hidden="true">→</span></a>
+            <a class="arrowlink" href="#quote" data-preselect-service="Electrical">Get a free fixed quote <span aria-hidden="true">→</span></a>
           </li>
         </ul>
       </article>

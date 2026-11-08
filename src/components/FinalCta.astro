@@ -10,7 +10,7 @@
 <section class="cta section" id="quote">
   <div class="container cta__grid">
     <div>
-      <span class="label">Get a quote</span>
+      <span class="label">Get a free fixed quote</span>
       <h2 class="display">Know <span class="hl">the price</span> before work begins.</h2>
       <p class="lead" style="margin-top: var(--space-4);">
         Tell us what's going on. Straightforward jobs get a free fixed price — most
@@ -23,11 +23,25 @@
         <li><strong>Same business day</strong> reply to quote requests, office hours <span class="nb">7am&#8211;5pm</span> <span class="nb">Mon&#8211;Fri</span></li>
         <li><strong>24/7 emergencies</strong> — burst pipes, no power, blocked sewer</li>
         <li><strong>Fixed price first</strong> — nothing starts until you've said yes</li>
+        <li><strong>Diagnosis credited</strong> — the $88 visit fee comes off your invoice if you go ahead within 14 days</li>
       </ul>
     </div>
 
     <form class="formcard" data-quote-form>
       <h3>How can we best assist you?</h3>
+
+      <a class="grate grate--in-form" href="#reviews" aria-label="Rated 4.9 out of 5 on Google — jump to reviews">
+        <img class="grate__g" src="images/google-g.svg" alt="" width="24" height="24" loading="lazy" />
+        <span class="grate__body">
+          <span class="grate__top">
+            <strong class="grate__score">4.9</strong>
+            <span class="grate__stars" aria-hidden="true">{Array.from({ length: 5 }).map(() => (
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3-5.8 3 1.1-6.5L2.6 9.4l6.5-.9z"/></svg>
+            ))}</span>
+          </span>
+          <span class="grate__label">149 Google reviews</span>
+        </span>
+      </a>
 
       <div class="qf-grid qf-form">
         <label class="field">
@@ -39,25 +53,25 @@
           <input type="tel" name="phone" placeholder="0400 000 000" required autocomplete="tel" />
         </label>
         <label class="field">
-          <span>Address</span>
-          <input type="text" name="suburb" placeholder="Suburb or street, Gold Coast" required />
+          <span>Suburb</span>
+          <input type="text" name="suburb" placeholder="e.g. Burleigh Heads" required />
         </label>
         <label class="field">
-          <span>Select service?</span>
-          <select name="service" required>
-            <option value="" disabled selected>Plumbing, electrical or not sure?</option>
+          <span>Service (optional)</span>
+          <select name="service">
+            <option value="" selected>Plumbing, electrical, or not sure?</option>
             <option>Plumbing</option>
             <option>Electrical</option>
             <option>Not sure yet</option>
           </select>
         </label>
         <label class="field field--full">
-          <span>Email</span>
-          <input type="email" name="email" placeholder="you@email.com" autocomplete="email" required />
+          <span>What's the problem?</span>
+          <textarea name="message" rows="2" placeholder="e.g. kitchen tap leaking under the sink" required></textarea>
         </label>
         <label class="field field--full">
-          <span>Details?</span>
-          <textarea name="message" rows="2" placeholder="A quick description helps us quote faster." required></textarea>
+          <span>Email (optional)</span>
+          <input type="email" name="email" placeholder="you@email.com" autocomplete="email" />
         </label>
         <label class="field field--full field--file">
           <span>Photos (optional — up to 5)</span>
@@ -70,7 +84,7 @@
 
       <div class="cf-turnstile" data-sitekey="0x4AAAAAAETmVAgqQEFhnLI9" data-size="flexible"></div>
 
-      <button class="btn btn--primary qf-submit" type="submit">Request my quote</button>
+      <button class="btn btn--primary qf-submit" type="submit">Get a free fixed quote</button>
 
       <p class="qf-reply">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
