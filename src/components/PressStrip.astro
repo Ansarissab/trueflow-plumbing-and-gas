@@ -16,34 +16,34 @@ const outlets = [
     href: 'https://www.realestate.com.au/news/hidden-plumbing-issue-reveals-shocking-truth-about-aussie-water-bills',
   },
   {
-    src: 'images/mentioned-on/domain.png',
+    src: 'images/mentioned-on/domain.webp',
     alt: 'Domain',
-    w: 200,
-    h: 30,
+    w: 271,
+    h: 64,
     label: 'Moral Service mentioned on Domain, opens in a new tab',
     href: 'https://www.domain.com.au/news/bingo-brother-how-a-gold-coast-tradie-located-a-pipe-ruining-a-clients-bedroom-floor-1451161/',
   },
   {
-    src: 'images/mentioned-on/pgc.png',
+    src: 'images/mentioned-on/pgc.webp',
     alt: 'Plumbing & Gas Conference 2026',
-    w: 200,
-    h: 42,
+    w: 318,
+    h: 84,
     label: 'Moral Service mentioned on Plumbing & Gas Conference 2026, opens in a new tab',
     href: 'https://au.entegy.events/pgc2026/Speakers',
   },
   {
-    src: 'images/mentioned-on/tradie.png',
+    src: 'images/mentioned-on/tradie.webp',
     alt: 'Tradie AI',
-    w: 200,
-    h: 34,
+    w: 230,
+    h: 68,
     label: 'Moral Service mentioned on Tradie AI, opens in a new tab',
     href: 'https://www.tradie-ai.com/',
   },
   {
-    src: 'images/mentioned-on/seniors.webp',
+    src: 'images/mentioned-on/seniors-88.webp',
     alt: 'Seniors Discount Club',
-    w: 200,
-    h: 44,
+    w: 89,
+    h: 88,
     label: 'Moral Service mentioned on Seniors Discount Club, opens in a new tab',
     href: 'https://seniorsdiscountclub.com.au/threads/do-this-one-simple-valve-check—or-watch-your-water-bills-skyrocket.83309/',
     name: 'Seniors Discount Club',
@@ -61,7 +61,15 @@ const groups = [outlets, outlets, outlets];
           <ul class="press__group" aria-hidden={i > 0 ? 'true' : undefined}>
             {g.map((o) => (
               <li>
-                <a href={o.href} target="_blank" rel="noopener noreferrer" aria-label={o.label}>
+                {/* Marquee duplicates are aria-hidden — drop their links from the
+                    tab order so no focusable element lives inside a hidden tree. */}
+                <a
+                  href={o.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={o.label}
+                  tabindex={i > 0 ? '-1' : undefined}
+                >
                   <img src={o.src} alt={o.alt} width={o.w} height={o.h} style={`--h: ${o.h}px`} />
                   {o.name && <span class="press__name">{o.name}</span>}
                 </a>

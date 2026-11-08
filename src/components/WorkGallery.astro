@@ -7,25 +7,25 @@
  */
 const items = [
   {
-    src: 'services/blocked-drains.jpg',
+    src: 'services/blocked-drains.webp',
     alt: 'A sewer-jetting rig with the 1300 522 107 panel on the back of a Moral Service vehicle',
     cap: 'Blocked drains',
     sub: 'Sewer-jetting rig, ready for the blockage.',
   },
   {
-    src: 'services/switchboards.jpg',
+    src: 'services/switchboards.webp',
     alt: 'A Moral Service electrician working on a home switchboard with an insulated screwdriver',
     cap: 'Switchboard upgrades',
     sub: 'Brought up to current Australian standards.',
   },
   {
-    src: 'services/hot-water.jpg',
+    src: 'services/hot-water.webp',
     alt: 'An outdoor hot water system being repaired at a Gold Coast home',
     cap: 'Hot water systems',
     sub: 'Gas, electric, solar or heat pump.',
   },
   {
-    src: 'services/fixture-installs.jpg',
+    src: 'services/fixture-installs.webp',
     alt: 'A Moral Service electrician fitting an exterior wall light beside a front door',
     cap: 'Lights, fans & power points',
     sub: 'Feature and outdoor lighting installed.',
@@ -51,7 +51,7 @@ const items = [
       {items.map((it) => (
         <figure class="work__item">
           <div class="plate">
-            <img src={`images/${it.src}`} alt={it.alt} width="1600" height="1066" loading="lazy" />
+            <img src={`images/${it.src}`} alt={it.alt} width="1096" height="730" loading="lazy" />
           </div>
           <figcaption class="work__cap">
             <b>{it.cap}</b>

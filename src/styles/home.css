@@ -2474,7 +2474,7 @@ body {
   height: 19px;
 }
 
-.footer__col h4 {
+.footer__col h3 {
   font-family: var(--font-display);
   font-variation-settings: "wght" 800, "wdth" 108;
   font-weight: 800;
